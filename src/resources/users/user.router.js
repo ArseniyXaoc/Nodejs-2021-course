@@ -8,4 +8,15 @@ router.route('/').get(async (req, res) => {
   res.json(users.map(User.toResponse));
 });
 
+router.route('/').post(async (req, res) => {
+  const employers = req.body;
+  const user =  await usersService.createUser(employers);
+  res.json(user);
+});
+
+router.route('/:id').get(async (req, res) => {
+  const user = await usersService.getById(req.params.id);
+  res.json(usersService(user));
+});
+
 module.exports = router;
