@@ -9,4 +9,6 @@ const addUser = async (user) => {
   USERS.push(user);
 }
 
-module.exports = { getAll, addUser };
+const getUser = async (id) => USERS.find(user => user.id === id);
+
+module.exports = { getAll, addUser, getUser };

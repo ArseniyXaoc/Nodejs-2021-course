@@ -9,4 +9,9 @@ const createUser =  async (data) => {
   return user;
 }
 
-module.exports = { getAll, createUser };
+const getById = async (id) => {
+  const user = await usersRepo.getUser(id);
+  return user;
+}
+
+module.exports = { getAll, createUser, getById };
