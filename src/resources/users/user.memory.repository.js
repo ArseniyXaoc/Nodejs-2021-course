@@ -9,20 +9,20 @@ const addUser = async (user) => {
   USERS.push(user);
 };
 
-const getUser = async (id) => USERS.find(user => user.id === id);
+const getById = async (id) => USERS.find(user => user.id === id);
 
-const updateUser = async (id, data) => {
-  const userIndex = USERS.findIndex(user => user.id === id);
-  USERS[userIndex] = { ...USERS[userIndex], ...data };
-  return USERS[userIndex];
+const update = async (id, data) => {
+  const index = USERS.findIndex(user => user.id === id);
+  USERS[index] = { ...USERS[index], ...data };
+  return USERS[index];
 };
 
-const deleteUser = async (id) => {
-  const userIndex = USERS.findIndex(user => user.id === id);
-  if(userIndex !== -1){
-    return USERS.splice(userIndex, 1);
+const deleteId = async (id) => {
+  const index = USERS.findIndex(item => item.id === id);
+  if (index !== -1) {
+    return USERS.splice(index, 1);
   }
   return undefined;
 };
 
-module.exports = { getAll, addUser, getUser, updateUser, deleteUser };
+module.exports = { getAll, addUser, getById, update, deleteId };

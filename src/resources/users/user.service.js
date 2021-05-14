@@ -9,10 +9,10 @@ const create =  async (data) => {
   return user;
 }
 
-const getById = async (id) => usersRepo.getUser(id);
+const getById = async (id) => usersRepo.getById(id);
 
-const updateUser = async (user, body) => usersRepo.updateUser(user.id, body);
+const update = async (user, body) => usersRepo.update(user.id, body);
 
-const deleteUser = async (id) => usersRepo.deleteUser(id);
+const deleteId = async (id) => usersRepo.deleteId(id);
 
-module.exports = { getAll, create, getById, updateUser, deleteUser };
+module.exports = { getAll, create, getById, update, deleteId };

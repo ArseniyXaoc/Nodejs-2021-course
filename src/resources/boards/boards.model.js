@@ -1,15 +1,17 @@
 const { v4: uuidv4 } = require('uuid');
 
+const Colums = require('./board.colums.model');
+
 class Board {
   constructor({
                 id = uuidv4(),
                 title,
-                colums,
+                columns = [],
               } = {}) {
     this.id = id;
     this.title = title;
-    this.coloms = colums;
+    this.columns = columns.map(item => new Colums(item));
   }
 }
 
-module.exports = Board;
+module.exports = { Board, Colums };

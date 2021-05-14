@@ -38,13 +38,13 @@ router.route('/:id').put(async (req, res) => {
   if (user === undefined) {
     res.status(404).send('User not found');
   } else {
-    usersService.updateUser(user, req.body);
+    await usersService.update(user, req.body);
     res.json(User.toResponse(user));
   }
 });
 
 router.route('/:id').delete(async (req, res) => {
-  const user = await usersService.deleteUser(req.params.id);
+  const user = await usersService.deleteId(req.params.id);
   if (user === undefined) {
     res.status(404).json('User not found');
   } else res.status(204).json('The user has been deleted');
