@@ -9,6 +9,10 @@ const  tasksRouter = require('./resources/task/tasks.router');
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 
+app.get(() => {
+  throw new Error(('Something Wrong!'));
+})
+
 app.use(express.json());
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
