@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const taskService = require('./tasks.service');
+const Task = require('./tasks.model');
 
 router.route('/').get(async (req, res) => {
   const tasks = await taskService.getAll();
   res.json(tasks);
 })
 
-// router.route('/').post(async (req, res) => {
-//   const { body } = req;
-//   const task = await taskService.create(body);
-//   res.status(201).json(task);
-// })
+router.route('/').post(async (req, res) => {
+  const { body } = req;
+  const task = await taskService.create(body);
+  res.status(201).json(Task.toResponse(task));
+})
 //
 // router.route('/:id').get(async (req, res) => {
 //   const task = await taskService.getById(req.params.id);

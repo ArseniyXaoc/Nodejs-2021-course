@@ -1,5 +1,5 @@
 const { TASK } = require('../../common/in-memory');
-const { Task } = require('./tasks.model');
+const Task = require('./tasks.model');
 
 const getAll = async () => TASK;
 
