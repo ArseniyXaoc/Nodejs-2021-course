@@ -1,4 +1,4 @@
-const { USERS } = require('../../common/in-memory');
+const { USERS, TASK } = require('../../common/in-memory');
 
 const getAll = async () =>
   // TODO: mock implementation. should be replaced during task development
@@ -17,11 +17,20 @@ const update = async (id, data) => {
   return USERS[index];
 };
 
+const uponUserTasks = (id) => {
+  while(TASK.findIndex(item => item.userId === id) !== -1) {
+    const x = TASK.findIndex(item => item.userId === id);
+    TASK[x].userId = null;
+  }
+};
+
 const deleteId = async (id) => {
   const index = USERS.findIndex(item => item.id === id);
+  uponUserTasks(id);
   if (index !== -1) {
     return USERS.splice(index, 1);
   }
+  TASK.map();
   return undefined;
 };
 
