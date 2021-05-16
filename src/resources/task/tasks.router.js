@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const router = require('express').Router({mergeParams: true});
 const taskService = require('./tasks.service');
 const Task = require('./tasks.model');
 
@@ -9,16 +9,16 @@ router.route('/').get(async (req, res) => {
 
 router.route('/').post(async (req, res) => {
   const { body } = req;
-  const task = await taskService.create(body);
+  const task = await taskService.create(req.params.boardId, body);
   res.status(201).json(Task.toResponse(task));
 })
-//
-// router.route('/:id').get(async (req, res) => {
-//   const task = await taskService.getById(req.params.id);
-//   if (task === undefined) {
-//     res.status(404).json('task not found');
-//   } else res.json(task);
-// });
+
+router.route('/:id').get(async (req, res) => {
+  const task = await taskService.getById(req.params.id);
+  if (task === undefined) {
+    res.status(404).json('task not found');
+  } else res.json(task);
+});
 //
 // router.route('/:id').put(async (req, res) => {
 //   const task = await taskService.getById(req.params.id);
