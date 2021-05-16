@@ -22,7 +22,7 @@ router.route('/:id').get(async (req, res) => {
 router.route('/:id').put(async (req, res) => {
   const board = await boardService.getById(req.params.id);
   if (board === undefined) {
-    res.status(404).send('User not found');
+    res.status(404).send('Board not found');
   } else {
     await boardService.update(board, req.body);
     res.json(board);
@@ -32,7 +32,7 @@ router.route('/:id').put(async (req, res) => {
 router.route('/:id').delete(async (req, res) => {
   const board = await boardService.deleteId(req.params.id);
   if (board === undefined) {
-    res.status(404).json('User not found');
+    res.status(404);
   } else res.status(204).json('The board has been deleted');
 });
 

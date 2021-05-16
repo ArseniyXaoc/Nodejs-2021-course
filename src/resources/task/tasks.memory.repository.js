@@ -1,10 +1,10 @@
 const { TASK } = require('../../common/in-memory');
-const { Task } = require('./tasks.model');
+const Task = require('./tasks.model');
 
 const getAll = async () => TASK;
 
-const create = async (body) => {
-  const task = new Task(body);
+const create = async (boardId, body) => {
+  const task = new Task({ ...body, boardId });
   await TASK.push(task)
   return task;
 };
