@@ -30,6 +30,13 @@ const create = async (boardId, body) => {
  * Update Task fields by Id in TASK db
  * @param {string} id Task Id
  * @param {object} data Data for updated Task field ,can change : {id, title, order, description , userId, boardId, columnId}
+ * @param {string} data.id Task Id
+ * @param {string} data.title Task Title
+ * @param {number} data.order Task Order
+ * @param {string} data.description Task Description
+ * @param {string} data.userId User id for new Task * 
+ * @param {string} data.boardId Board id for new Task * 
+ * @param {string} data.columnId Column id for new Task * 
  * @returns {Promise} Updated Task
  */
 const update = async (id, data) => {
