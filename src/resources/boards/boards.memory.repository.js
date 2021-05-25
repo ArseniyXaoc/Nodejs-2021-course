@@ -4,14 +4,14 @@ const { TASK } = require('../../common/in-memory');
 
 /**
  * Get all Boars by id from BOARD db
- * @returns {Promise<[]>} All Board from BOARD db
+ * @returns {Promise} All Board from BOARD db
  */
 const getAll = async () => BOARD;
 
 /**
  * Create new Body in BOARD db
- * @param body Body data {id, title, column: [{id, title, order}]}
- * @returns {Promise<Board>}
+ * @param {object} body Body data {id, title, column: [{id, title, order}]}
+ * @return {Promise}
  */
 const create = async (body) => {
   const board = new Board(body);
@@ -19,11 +19,13 @@ const create = async (body) => {
   return board;
 };
 
+
+
 /**
  * Update Board data by id in BOARD db
- * @param id Board id
- * @param data Board data {id, title, column: [{id, title, order}]}
- * @returns {Promise<*>} found data in BOARD db
+ * @param {string} id Board id
+ * @param {object} data Board data {id, title, column: [{id, title, order}]}
+ * @returns {Promise} found data in BOARD db
  */
 const update = async (id, data) => {
   const index = BOARD.findIndex(item => item.id === id);
@@ -33,14 +35,14 @@ const update = async (id, data) => {
 
 /**
  * Get Board by id from BOARD db
- * @param id Board id
- * @returns {Promise<*>} found Board in BOARD db
+ * @param {string} id Board id
+ * @returns {Promise} found Board in BOARD db
  */
 const getById = async (id) => BOARD.find(board => board.id === id);
 
 /**
  * Delete all Tasks in deleted Board
- * @param id Board id
+ * @param {string} id Board id
  * @returns {Promise<void>} Deleted Board by id BOARD db
  */
 const deleteBoardTasks = async (id) => {
@@ -54,8 +56,8 @@ const deleteBoardTasks = async (id) => {
 
 /**
  * Delete Board by id
- * @param id Board id
- * @returns {Promise<*[]|undefined>} Deleted board from BOARD db or undefined
+ * @param {string} id Board id
+ * @returns {Promise|undefined} Deleted board from BOARD db or undefined
  */
 const deleteId = async (id) => {
   deleteBoardTasks(id);
