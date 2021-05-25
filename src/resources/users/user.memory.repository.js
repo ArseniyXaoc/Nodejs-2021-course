@@ -8,7 +8,7 @@ const getAll = async () => USERS;
 
 /**
  * Add new User in db
- * @param user User data object from User class constructor
+ * @param user User data object from User class constructor {id, name, login, password}
  * @returns {Promise<void>} undefined
  */
 const addUser = async (user) => {
@@ -25,7 +25,7 @@ const getById = async (id) => USERS.find(user => user.id === id);
 /**
  * Update User data by Id
  * @param id User Id
- * @param data User data object
+ * @param data User data object {id, name, login, password}
  * @returns {Promise<*>} found User data object by id
  */
 const update = async (id, data) => {

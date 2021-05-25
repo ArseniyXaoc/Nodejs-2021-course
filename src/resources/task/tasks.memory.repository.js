@@ -22,7 +22,7 @@ const create = async (boardId, body) => {
 /**
  * Update Task fields by Id in TASK db
  * @param id Task Id
- * @param data Data for updated Task field
+ * @param data Data for updated Task field ,can change : {id, title, order, description , userId, boardId, columnId}
  * @returns {Promise<*>} Updated Task
  */
 const update = async (id, data) => {
