@@ -1,13 +1,12 @@
 const { v4: uuidv4 } = require('uuid');
 /**
  * @class Task
- * @constructor
- * @param {string} title - Title name
- * @param {string} order - Order name
- * @param {string} description - Description for Title
- * @param {string} userId - UserId who owns Task
- * @param {string} boardId - BoardId who owns Task
- * @param {string} columnId - ColumnId who owns Task
+ * @param {Object} employees - Title name
+ * @param {string} employees.order - Order name
+ * @param {string} employees.description - Description for Title
+ * @param {string} employees.userId - UserId who owns Task
+ * @param {string} employees.boardId - BoardId who owns Task
+ * @param {string} employees.columnId - ColumnId who owns Task
  */
 class Task {
   constructor({

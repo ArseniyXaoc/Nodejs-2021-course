@@ -9,9 +9,10 @@ const { TASK } = require('../../common/in-memory');
 const getAll = async () => BOARD;
 
 /**
- * Create new Body in BOARD db
- * @param {object} body Body data {id, title, column: [{id, title, order}]}
- * @return {Promise}
+ * 
+ * @param {Object} body 
+ * @param {string} body.title Board Title
+ * @param {Array} body.order Board Order Array
  */
 const create = async (body) => {
   const board = new Board(body);
@@ -19,12 +20,14 @@ const create = async (body) => {
   return board;
 };
 
-
-
 /**
  * Update Board data by id in BOARD db
  * @param {string} id Board id
  * @param {object} data Board data {id, title, column: [{id, title, order}]}
+ * @param {string} data.id Board id
+ * @param {string} data.title Board name
+ * @param {Array[]} data.column Board column
+ * @param {string} data.password Board password
  * @returns {Promise} found data in BOARD db
  */
 const update = async (id, data) => {

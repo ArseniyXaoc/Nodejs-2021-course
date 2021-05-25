@@ -3,9 +3,9 @@ const { v4: uuidv4 } = require('uuid');
 const Colums = require('./board.colums.model');
 /**
  * @class Board
- * @constructor
- * @param {string} title - Board title name
- * @param {Array} columns - Column Array who owns Board
+ * @param {Object} employees - Board params
+ * @param {string} employees.title - Board title name
+ * @param {Array} employees.columns - Column Array who owns Board
  */
 class Board {
   constructor({

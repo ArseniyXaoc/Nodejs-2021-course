@@ -1,10 +1,10 @@
 const { v4: uuidv4 } = require('uuid');
 /**
  * @class User
- * @constructor
- * @param {string} name - Name of User
- * @param {string} login - User Login
- * @param {string} password - User Password
+ * @param {Object} employees - Board params
+ * @param {string} employees.name - Name of User
+ * @param {string} employees.login - User Login
+ * @param {string} employees.password - User Password
  */
 class User {
   constructor({

@@ -9,8 +9,15 @@ const getAll = async () => TASK;
 
 /**
  * Create new Task and add to TASK db
- * @param {string} boardId Board id for new Task
+ * 
  * @param {object} body Task body from Task model should contain (id, title, order, description , userId, boardId, columnId)
+ * @param {string} body.id Task Id
+ * @param {string} body.title Task Title
+ * @param {number} body.order Task Order
+ * @param {string} body.description Task Description
+ * @param {string} body.userId User id for new Task * 
+ * @param {string} body.boardId Board id for new Task * 
+ * @param {string} body.columnId Column id for new Task * 
  * @returns {Promise} Created Task
  */
 const create = async (boardId, body) => {
