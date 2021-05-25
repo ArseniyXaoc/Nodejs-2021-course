@@ -20,7 +20,7 @@ const create = async (boardId, body) => {
 };
 
 /**
- *
+ * Update Task fields by Id in TASK db
  * @param id Task Id
  * @param data Data for updated Task field
  * @returns {Promise<*>} Updated Task
@@ -32,14 +32,14 @@ const update = async (id, data) => {
 };
 
 /**
- *
- * @param id TAsk Id
+ * Get Task by id from TASK db
+ * @param id Task Id
  * @returns {Promise<*>} Found Task by Id in TASK db
  */
 const getById = async (id) => TASK.find(task => task.id === id);
 
 /**
- *
+ * Delete Task by id in TASK db
  * @param id Task id
  * @returns {Promise<*[]|undefined>} Deleted task from TASK db of undefined if Task do not found
  */
