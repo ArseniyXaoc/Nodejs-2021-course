@@ -55,12 +55,13 @@ const getById = async (id) => TASK.find(task => task.id === id);
 /**
  * Delete Task by id in TASK db
  * @param {string} id Task id
- * @returns {Promise|undefined} Deleted task from TASK db of undefined if Task do not found
+ * @returns {boolean|undefined} Deleted task from TASK db of undefined if Task do not found
  */
 const deleteId = async (id) => {
   const index = TASK.findIndex(item => item.id === id);
   if (index !== -1) {
-    return TASK.splice(index, 1);
+    TASK.splice(index, 1);
+    return true;
   }
   return undefined;
 };

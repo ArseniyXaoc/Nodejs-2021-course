@@ -51,13 +51,14 @@ const uponUserTasks = (id) => {
 /**
  * Delete User by id
  * @param {string} id User id
- * @returns {Promise|undefined} Founded & deleted User in USERS db or undefined if it does not found
+ * @returns {boolean|undefined} Founded & deleted User in USERS db or undefined if it does not found
  */
 const deleteId = async (id) => {
   const index = USERS.findIndex(item => item.id === id);
   uponUserTasks(id);
   if (index !== -1) {
-    return USERS.splice(index, 1);
+    USERS.splice(index, 1);
+    return true;
   }
   return undefined;
 };
