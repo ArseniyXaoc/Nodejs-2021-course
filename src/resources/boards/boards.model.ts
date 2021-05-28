@@ -1,6 +1,6 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
-const Colums = require('./board.colums.model');
+import Colums from './board.colums.model';
 /**
  * @class Board
  * @param {Object} employees - Board params
@@ -19,4 +19,4 @@ class Board {
   }
 }
 
-module.exports = { Board, Colums };
+export default { Board, Colums };

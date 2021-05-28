@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 /**
  * @class Task
  * @param {Object} employees - Title name
@@ -33,4 +33,4 @@ class Task {
   }
 }
 
-module.exports = Task;
+export default Task;

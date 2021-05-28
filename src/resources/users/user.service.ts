@@ -1,5 +1,5 @@
-const usersRepo = require('./user.memory.repository');
-const User = require('./user.model');
+import usersRepo from './user.memory.repository';
+import User from './user.model';
 
 const getAll = () => usersRepo.getAll();
 
@@ -15,4 +15,4 @@ const update = async (user, body) => usersRepo.update(user.id, body);
 
 const deleteId = async (id) => usersRepo.deleteId(id);
 
-module.exports = { getAll, create, getById, update, deleteId };
+export = { getAll, create, getById, update, deleteId };

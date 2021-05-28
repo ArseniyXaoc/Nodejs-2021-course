@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const userSchema = Joi.object({
   name: Joi.string().alphanum().min(3).max(30).required(),
@@ -24,4 +24,4 @@ const userValidate = (body) => {
   }
 }
 
-module.exports = { userValidate };
+export default { userValidate };

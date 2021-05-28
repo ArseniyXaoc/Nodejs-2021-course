@@ -1,5 +1,5 @@
-const { TASK } = require('../../common/in-memory');
-const Task = require('./tasks.model');
+import { TASK } from '../../common/in-memory';
+import Task from './tasks.model';
 
 /**
  * Return all Tasks from TASKS db
@@ -66,4 +66,4 @@ const deleteId = async (id) => {
   return undefined;
 };
 
-module.exports = {getAll, create, getById, update,deleteId };
+export default {getAll, create, getById, update,deleteId };

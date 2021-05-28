@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Class for create object Column in Board
@@ -15,4 +15,4 @@ class Colums {
   }
 }
 
-module.exports = Colums;
+export default Colums;

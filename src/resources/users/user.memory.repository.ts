@@ -1,6 +1,7 @@
-const { USERS, TASK } = require('../../common/in-memory');
+import DB from '../../common/in-memory';
 
-/** 
+const {USERS, BOARD} = DB;
+/**
  * get All data from USERS db
  * @returns {Promise} All User in USERS db
  */
@@ -63,4 +64,4 @@ const deleteId = async (id) => {
   return undefined;
 };
 
-module.exports = { getAll, addUser, getById, update, deleteId };
+export = { getAll, addUser, getById, update, deleteId };

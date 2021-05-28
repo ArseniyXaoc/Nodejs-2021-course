@@ -1,6 +1,6 @@
-const { BOARD } = require('../../common/in-memory');
-const { Board } = require('./boards.model');
-const { TASK } = require('../../common/in-memory');
+import { BOARD } from '../../common/in-memory';
+import { Board } from './boards.model';
+import { TASK } from '../../common/in-memory';
 
 /**
  * Get all Boars by id from BOARD db
@@ -74,4 +74,4 @@ const deleteId = async (id) => {
 
 
 
-module.exports = {getAll, create, getById, update,deleteId };
+export default {getAll, create, getById, update,deleteId };

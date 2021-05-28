@@ -1,7 +1,8 @@
-const router = require('express').Router();
-const User = require('./user.model');
-const usersService = require('./user.service');
+import { Router } from 'express';
+import User from './user.model';
+import usersService from './user.service';
 
+const router = Router();
 router.route('/').get(async (req, res) => {
   const users = await usersService.getAll();
   res.json(users.map(User.toResponse));
@@ -37,4 +38,4 @@ router.route('/:id').delete(async (req, res) => {
   } else res.status(204).json('The user has been deleted');
 });
 
-module.exports = router;
+export default router;
