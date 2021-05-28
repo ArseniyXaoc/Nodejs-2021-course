@@ -1,6 +1,6 @@
 import DB from '../../common/in-memory';
 import { ISecretUser, IUser, User } from './user.model'
-const {USERS, BOARD, TASK} = DB;
+const {USERS, TASK} = DB;
 
 /**
  * get All data from USERS db
@@ -27,9 +27,9 @@ const addUser = async (user: ISecretUser): Promise<IUser> => {
  * @param {string} id User Id
  * @returns {Promise} User found in USERS db by id
  */
-const getById = async (id: string): Promise<IUser | null>  => {
+const getById = async (id: string): Promise<ISecretUser | null>  => {
   const user =  USERS.find(user => user.id === id);
-     return user? User.toResponse(user): null;
+     return user? user: null;
 };
 
 /**
@@ -42,10 +42,13 @@ const getById = async (id: string): Promise<IUser | null>  => {
  * @param {string} data.password User password
  * @returns {Promise} found User data object by id
  */
-const update = async (id: string, data) => {
+const update = async (id: string, data: ISecretUser): Promise<ISecretUser | undefined> => {
   const index = USERS.findIndex(user => user.id === id);
-  USERS[index] = { ...USERS[index], ...data };
-  return USERS[index];
+  if(index !== -1){
+    USERS[index] = { ...USERS[index], ...data };
+    return USERS[index];
+  }
+  return undefined;
 };
 
 /**

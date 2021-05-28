@@ -1,18 +1,18 @@
 import usersRepo from './user.memory.repository';
-import {User, ISecretUser, IUser} from './user.model';
+import {User, ISecretUser} from './user.model';
 
-const getAll = () => usersRepo.getAll();
+const getAll = (): Promise<ISecretUser[]>  => usersRepo.getAll();
 
-const create =  async (data:ISecretUser): Promise<IUser> => {
+const create =  async (data:ISecretUser): Promise<ISecretUser> => {
   const user = new User(data);
-  const newUser = usersRepo.addUser(user);
-  return newUser;
+  usersRepo.addUser(user);
+  return user;
 }
 
-const getById = async (id: string) => usersRepo.getById(id);
+const getById = async (id: string):Promise<ISecretUser | null>  => usersRepo.getById(id);
 
-const update = async (id: string, body: ISecretUser): Promise<IUser>  => usersRepo.update(id, body);
+const update = async (id: string, body: ISecretUser): Promise<ISecretUser | undefined>  => usersRepo.update(id, body);
 
-const deleteId = async (id: string) => usersRepo.deleteId(id);
+const deleteId = async (id: string): Promise<boolean> => usersRepo.deleteId(id);
 
 export = { getAll, create, getById, update, deleteId };
