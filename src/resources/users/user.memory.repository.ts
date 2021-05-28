@@ -1,11 +1,13 @@
 import DB from '../../common/in-memory';
+import { ISecretUser, IUser, User } from './user.model'
+const {USERS, BOARD, TASK} = DB;
 
-const {USERS, BOARD} = DB;
 /**
  * get All data from USERS db
  * @returns {Promise} All User in USERS db
  */
-const getAll = async () => USERS;
+const getAll = async (): Promise<ISecretUser[]> => USERS;
+
 /** 
  * Add new User in db
  * @param {Object} user User data object from User class constructor {id, name, login, password}
@@ -15,14 +17,21 @@ const getAll = async () => USERS;
  * @param {string} user.password User password
  * @returns {Promise} Created User 
  */
-const addUser = async (user) => USERS.push(user);
-;
+const addUser = async (user: ISecretUser): Promise<IUser> => {
+  USERS.push(user);
+  return User.toResponse(user);
+};
+
 /** 
  * Get User data by Id
  * @param {string} id User Id
  * @returns {Promise} User found in USERS db by id
  */
-const getById = async (id) => USERS.find(user => user.id === id);
+const getById = async (id: string): Promise<IUser | null>  => {
+  const user =  USERS.find(user => user.id === id);
+     return user? User.toResponse(user): null;
+};
+
 /**
  * Update User data by Id
  * @param {string} id User Id
@@ -33,35 +42,37 @@ const getById = async (id) => USERS.find(user => user.id === id);
  * @param {string} data.password User password
  * @returns {Promise} found User data object by id
  */
-const update = async (id, data) => {
+const update = async (id: string, data) => {
   const index = USERS.findIndex(user => user.id === id);
   USERS[index] = { ...USERS[index], ...data };
   return USERS[index];
 };
+
 /**
  * Find & delete User in Tasks db - user in Task set null
  * @param {string} id User id
  * @returns void
  */
-const uponUserTasks = (id) => {
+const uponUserTasks = (id: string) => {
   while(TASK.findIndex(item => item.userId === id) !== -1) {
     const x = TASK.findIndex(item => item.userId === id);
     TASK[x].userId = null;
   }
 };
+
 /**
  * Delete User by id
  * @param {string} id User id
  * @returns {boolean|undefined} Founded & deleted User in USERS db or undefined if it does not found
  */
-const deleteId = async (id) => {
+const deleteId = async (id: string): Promise<boolean> => {
   const index = USERS.findIndex(item => item.id === id);
   uponUserTasks(id);
   if (index !== -1) {
     USERS.splice(index, 1);
     return true;
   }
-  return undefined;
+  return false;
 };
 
 export = { getAll, addUser, getById, update, deleteId };

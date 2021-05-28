@@ -26,7 +26,7 @@ router.route('/:id').put(async (req, res) => {
   if (user === undefined) {
     res.status(404).send('User not found');
   } else {
-    await usersService.update(user, req.body);
+    await usersService.update(user.id, req.body);
     res.json(User.toResponse(user));
   }
 });

@@ -1,4 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
+
+interface IUser  {
+  id?:string;
+  name: string;
+  login: string;
+}
+
+interface ISecretUser extends IUser {
+  password: string;
+}
+
 /**
  * @class User
  * @param {Object} employees - Board params
@@ -7,6 +18,10 @@ import { v4 as uuidv4 } from 'uuid';
  * @param {string} employees.password - User Password
  */
 class User {
+  id:string;
+  name: string;
+  login: string;
+  password: string;
   constructor({
     id = uuidv4(),
     name = 'USER',
@@ -19,10 +34,11 @@ class User {
     this.password = password;
   }
 
-  static toResponse(user) {
+  static toResponse(user: ISecretUser): IUser   {
     const { id, name, login } = user;
     return { id, name, login };
   }
 }
 
-export = { User };
+
+export { User, IUser, ISecretUser };

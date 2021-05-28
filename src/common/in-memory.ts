@@ -1,8 +1,9 @@
-type DBT = Array<{[key:string]: unknown}>;
-const DB: {USERS: DBT, BOARD: DBT, TASK: DBT} = {
+import { ISecretUser } from '../resources/users/user.model'
+// type DBT = Array<{[key:string]:[]}>;
+const DB: {USERS: ISecretUser[], BOARD: [], TASK: []} = {
   USERS: [],
   BOARD: [],
   TASK: [],
 }
 
-export { DB } ;
+export default DB;
