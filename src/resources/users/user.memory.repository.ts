@@ -59,7 +59,10 @@ const update = async (id: string, data: ISecretUser): Promise<ISecretUser | unde
 const uponUserTasks = (id: string) => {
   while(TASK.findIndex(item => item.userId === id) !== -1) {
     const x = TASK.findIndex(item => item.userId === id);
-    TASK[x].userId = null;
+    if(TASK[x]?.userId){
+      TASK[x]!.userId = null;
+    }
+    
   }
 };
 

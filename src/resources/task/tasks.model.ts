@@ -1,4 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
+
+interface ITaskClass {
+  id?: string;
+  title?: string;
+  order?: string;
+  description?: string;
+  userId?:  string | null;
+  boardId?: string;
+  columnId?: string;
+}
 /**
  * @class Task
  * @param {Object} employees - Title name
@@ -9,15 +19,23 @@ import { v4 as uuidv4 } from 'uuid';
  * @param {string} employees.columnId - ColumnId who owns Task
  */
 class Task {
+  id: string;
+  title: string;
+  order: string;
+  description: string;
+  userId: string | null ;
+  boardId: string;
+  columnId: string;
   constructor({
-                id = uuidv4(),
-                title,
-                order,
-                description,
-                userId,
-                boardId,
-                columnId
-              } = {}) {
+    id = uuidv4(),
+    title = '',
+    order = '',
+    description = '',
+    userId = '',
+    boardId = '',
+    columnId = ''}:ITaskClass = {},
+
+  ) {
     this.id = id;
     this.title = title;
     this.order = order;
@@ -27,10 +45,21 @@ class Task {
     this.columnId = columnId;
   }
 
-  static toResponse(task) {
+  static toResponse(task: ITask): ITask {
     const { id, title, order, description, userId, boardId, columnId } = task;
     return { id, title, order, description, userId, boardId, columnId };
   }
 }
 
-export default Task;
+interface ITask {
+  id: string;
+  title: string;
+  order: string;
+  description: string;
+  userId?:  string | null;
+  boardId: string;
+  columnId: string;
+}
+
+
+export {Task, ITask};

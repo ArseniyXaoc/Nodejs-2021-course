@@ -1,27 +1,29 @@
-import { TASK } from '../../common/in-memory';
-import Task from './tasks.model';
+import DB from '../../common/in-memory';
+const {TASK} = DB;
+import {Task, ITask} from './tasks.model';
+
 
 /**
  * Return all Tasks from TASKS db
  * @returns {Promise} All Tasks
  */
-const getAll = async () => TASK;
+const getAll = async (): Promise<ITask[]> => TASK;
 
 /**
  * Create new Task and add to TASK db
  * 
- * @param {object} body Task body from Task model should contain (id, title, order, description , userId, boardId, columnId)
+ * @param {object} body Task body from Task model should contain (id: string title, order, description , userId, boardId, columnId)
  * @param {string} body.id Task Id
  * @param {string} body.title Task Title
  * @param {number} body.order Task Order
  * @param {string} body.description Task Description
  * @param {string} body.userId User id for new Task * 
- * @param {string} body.boardId Board id for new Task * 
+ * @param {string} body.id Board id for new Task * 
  * @param {string} body.columnId Column id for new Task * 
  * @returns {Promise} Created Task
  */
-const create = async (boardId, body) => {
-  const task = new Task({ ...body, boardId });
+const create = async (body: ITask): Promise<ITask> => {
+  const task = new Task({ ...body });
   await TASK.push(task)
   return task;
 };
@@ -39,7 +41,7 @@ const create = async (boardId, body) => {
  * @param {string} data.columnId Column id for new Task * 
  * @returns {Promise} Updated Task
  */
-const update = async (id, data) => {
+const update = async (id: string, data: ITask): Promise<ITask | undefined> => {
   const index = TASK.findIndex(item => item.id === id);
   TASK[index] = { ...TASK[index], ...data };
   return TASK[index];
@@ -50,20 +52,20 @@ const update = async (id, data) => {
  * @param {string} id Task Id
  * @returns {Promise} Found Task by Id in TASK db
  */
-const getById = async (id) => TASK.find(task => task.id === id);
+const getById = async (id: string): Promise<ITask | undefined> => TASK.find(task => task.id === id);
 
 /**
  * Delete Task by id in TASK db
  * @param {string} id Task id
  * @returns {boolean|undefined} Deleted task from TASK db of undefined if Task do not found
  */
-const deleteId = async (id) => {
+const deleteId = async (id: string): Promise<boolean> => {
   const index = TASK.findIndex(item => item.id === id);
   if (index !== -1) {
     TASK.splice(index, 1);
     return true;
   }
-  return undefined;
+  return false;
 };
 
-export default {getAll, create, getById, update,deleteId };
+export default {getAll, create, getById, update,deleteId};

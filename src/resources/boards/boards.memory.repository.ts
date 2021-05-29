@@ -1,12 +1,13 @@
-import { BOARD } from '../../common/in-memory';
-import { Board } from './boards.model';
-import { TASK } from '../../common/in-memory';
+
+import { Board, IBoard } from './boards.model';
+import DB from '../../common/in-memory';
+const {BOARD, TASK} = DB;
 
 /**
  * Get all Boars by id from BOARD db
  * @returns {Promise} All Board from BOARD db
  */
-const getAll = async () => BOARD;
+const getAll = async (): Promise<IBoard[]> => BOARD;
 
 /**
  * Create new Board to BOARD db
@@ -15,7 +16,7 @@ const getAll = async () => BOARD;
  * @param {Array} body.order Board Order Array
  * @returns {Object} Created body 
  */
-const create = async (body) => {
+const create = async (body: IBoard): Promise<IBoard> => {
   const board = new Board(body);
   await BOARD.push(board)
   return board;
@@ -31,7 +32,7 @@ const create = async (body) => {
  * @param {string} data.password Board password
  * @returns {Promise} found data in BOARD db
  */
-const update = async (id, data) => {
+const update = async (id: string, data: IBoard): Promise<IBoard | undefined> => {
   const index = BOARD.findIndex(item => item.id === id);
   BOARD[index] = { ...BOARD[index], ...data };
   return BOARD[index];
@@ -42,14 +43,14 @@ const update = async (id, data) => {
  * @param {string} id Board id
  * @returns {Promise} found Board in BOARD db
  */
-const getById = async (id) => BOARD.find(board => board.id === id);
+const getById = async (id: string): Promise<IBoard | undefined> => BOARD.find(board => board.id === id);
 
 /**
  * Delete all Tasks in deleted Board
  * @param {string} id Board id
  * @returns {Promise<void>} Deleted Board by id BOARD db
  */
-const deleteBoardTasks = async (id) => {
+const deleteBoardTasks = async (id: string) => {
   while (TASK.findIndex((item) => item.boardId === id) !== -1) {
     TASK.findIndex((item, index) => {
       TASK.splice(index, 1);
@@ -63,13 +64,14 @@ const deleteBoardTasks = async (id) => {
  * @param {string} id Board id
  * @returns {Promise|undefined} Deleted board from BOARD db or undefined
  */
-const deleteId = async (id) => {
+const deleteId = async (id: string): Promise<boolean> => {
   deleteBoardTasks(id);
   const index = BOARD.findIndex(item => item.id === id);
   if (index !== -1) {
-    return BOARD.splice(index, 1);
+    BOARD.splice(index, 1);
+    return true
   }
-  return undefined;
+  return false;
 };
 
 

@@ -8,7 +8,13 @@ import { v4 as uuidv4 } from 'uuid';
  * @param employees.order Order of Columns
  */
 class Colums {
-  constructor({ title, order} = {}) {
+  id:string;
+  title:string;
+  order: number;
+  constructor({title, order}:{
+    title:string,
+    order: number
+  }) {
     this.id = uuidv4();
     this.title = title;
     this.order = order;

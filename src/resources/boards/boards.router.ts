@@ -25,7 +25,7 @@ router.route('/:id').put(async (req, res) => {
   if (board === undefined) {
     res.status(404).send('Board not found');
   } else {
-    await boardService.update(board, req.body);
+    await boardService.update(board.id, req.body);
     res.json(board);
   }
 });

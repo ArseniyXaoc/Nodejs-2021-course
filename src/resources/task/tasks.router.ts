@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import taskService from './tasks.service';
-import Task from './tasks.model';
+import { Task, ITask } from './tasks.model';
 
 const router = Router({mergeParams: true});
 router.route('/').get(async (req, res) => {
@@ -9,8 +9,8 @@ router.route('/').get(async (req, res) => {
 })
 
 router.route('/').post(async (req, res) => {
-  const { body } = req;
-  const task = await taskService.create(req.params.boardId, body);
+  const  body: ITask = req.body;
+  const task = await taskService.create(body);
   res.status(201).json(Task.toResponse(task));
 })
 
@@ -26,7 +26,7 @@ router.route('/:id').put(async (req, res) => {
   if (task === undefined) {
     res.status(404).send('task not found');
   } else {
-    await taskService.update(task, req.body);
+    await taskService.update(task.id, req.body);
     res.json(task);
   }
 });
