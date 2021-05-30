@@ -53,6 +53,7 @@ const getById = async (id: string): Promise<IBoard | undefined> => BOARD.find(bo
 const deleteBoardTasks = async (id: string) => {
   while (TASK.findIndex((item) => item.boardId === id) !== -1) {
     TASK.findIndex((item, index) => {
+      console.log(item);
       TASK.splice(index, 1);
       return null;
     })

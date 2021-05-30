@@ -4,6 +4,7 @@ import usersService from './user.service';
 
 const router = Router();
 router.route('/').get(async (req, res) => {
+  console.log(req);
   const users = await usersService.getAll();
   res.json(users.map(User.toResponse));
 });

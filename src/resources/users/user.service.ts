@@ -11,7 +11,7 @@ const create =  async (data:ISecretUser): Promise<ISecretUser> => {
 
 const getById = async (id: string):Promise<ISecretUser | null>  => usersRepo.getById(id);
 
-const update = async (id: string, body: ISecretUser): Promise<ISecretUser | undefined>  => usersRepo.update(id: string body);
+const update = async (id: string, body: ISecretUser): Promise<ISecretUser | undefined>  => usersRepo.update(id, body);
 
 const deleteId = async (id: string): Promise<boolean> => usersRepo.deleteId(id);
 

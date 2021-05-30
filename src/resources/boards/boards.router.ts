@@ -3,6 +3,7 @@ import boardService from './boards.service';
 
 const router = Router();
 router.route('/').get(async (req, res) => {
+  console.log(req);
   const boards = await boardService.getAll();
   res.json(boards);
 })

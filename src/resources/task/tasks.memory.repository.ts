@@ -11,7 +11,8 @@ const getAll = async (): Promise<ITask[]> => TASK;
 
 /**
  * Create new Task and add to TASK db
- * 
+ *
+ * @param {object} boardId Board ID where the task will be written
  * @param {object} body Task body from Task model should contain (id: string title, order, description , userId, boardId, columnId)
  * @param {string} body.id Task Id
  * @param {string} body.title Task Title
@@ -22,8 +23,8 @@ const getAll = async (): Promise<ITask[]> => TASK;
  * @param {string} body.columnId Column id for new Task * 
  * @returns {Promise} Created Task
  */
-const create = async (body: ITask): Promise<ITask> => {
-  const task = new Task({ ...body });
+const create = async (boardId: string, body: ITask): Promise<ITask> => {
+  const task = new Task({ ...body, boardId });
   await TASK.push(task)
   return task;
 };
