@@ -9,8 +9,11 @@ import { v4 as uuidv4 } from 'uuid';
  */
 class Colums {
   id:string;
+
   title:string;
+
   order: number;
+
   constructor({title, order}:{
     title:string,
     order: number

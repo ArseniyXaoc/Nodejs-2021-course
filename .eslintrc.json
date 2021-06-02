@@ -25,7 +25,7 @@
      "plugin:@typescript-eslint/recommended",
     // "plugin:@typescript-eslint/recommended-requiring-type-checking",
     // "plugin:node/recommended",
-    // "airbnb-base",
+     "airbnb-typescript/base",
      "prettier"
   ],
   "rules": {

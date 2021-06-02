@@ -1,6 +1,7 @@
 import DB from '../../common/in-memory';
-const {TASK} = DB;
 import {Task, ITask} from './tasks.model';
+
+const {TASK} = DB;
 
 
 /**

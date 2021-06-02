@@ -3,8 +3,7 @@ import {User} from './user.model';
 import usersService from './user.service';
 
 const router = Router();
-router.route('/').get(async (req, res) => {
-  console.log(req);
+router.route('/').get(async (_req, res) => {
   const users = await usersService.getAll();
   res.json(users.map(User.toResponse));
 });
