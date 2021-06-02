@@ -14,6 +14,12 @@ const logger = (req: Request, res: Response, next: NextFunction) =>{
       })
 }
 
+const errorHandler = (err: Error, _req: Request, res: Response, _next: NextFunction) => {
+ console.error(err);
+ res.status(500);
+ res.json({
+     message: err.message
+ })
+}
 
-
-export {logger}
+export {logger, errorHandler}

@@ -5,7 +5,7 @@ import YAML from 'yamljs';
 import userRouter from './resources/users/user.router';
 import boardsRouter from './resources/boards/boards.router';
 import tasksRouter from './resources/task/tasks.router';
-import {logger} from './utils';
+import {logger, errorHandler} from './utils';
 
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
@@ -25,9 +25,12 @@ app.use('/', (req, res, next) => {
   }
   next();
 });
-
+app.get('/test', async (_req, _res, next) => {
+  return next(new Error('Unhandled Error'));
+});
 app.use('/users', userRouter);
 app.use('/boards', boardsRouter);
 app.use('/boards/:boardId/tasks', tasksRouter);
+app.use(errorHandler);
 
 export default app;
