@@ -14,6 +14,9 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 //   throw new Error(('Something Wrong!'));
 // })
 
+
+
+
 app.use(express.json());
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
@@ -26,6 +29,9 @@ app.use('/', (req, res, next) => {
   next();
 });
 app.get('/test', async (_req, _res, next) => next(new Error('Unhandled Error')));
+app.get('/test1', async () => {
+  throw new Error();
+});
 app.use('/users', userRouter);
 app.use('/boards', boardsRouter);
 app.use('/boards/:boardId/tasks', tasksRouter);

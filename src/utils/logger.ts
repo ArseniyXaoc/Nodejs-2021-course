@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express';
 import {finished} from 'stream';
-import {createWriteStream} from 'fs';
-import path from 'path';
+// import {createWriteStream} from 'fs';
+// import path from 'path';
 
 // const accessLogStream = createWriteStream(path.join(__dirname, 'acccess.log'), {flags: 'a'});
 
@@ -26,5 +26,17 @@ const errorHandler = (err: Error, _req: Request, res: Response, _next: NextFunct
      message: err.message
  })
 }
+
+process.on('uncaughtException', (error: Error) => {
+    console.error(`captured error: ${error.message}`);
+    // fs.writeFileSync...
+    process.exit(1);
+  });
+  
+  process.on('unhandledRejection', (reason: Error, promise: Promise<any>) => {
+    console.error(`Unhandled rejection detected: ${reason.message} ${promise}`);
+    // fs.writeFileSync...
+    process.exit(1);
+  });
 
 export {logger, errorHandler}
