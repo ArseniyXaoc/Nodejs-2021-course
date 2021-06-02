@@ -25,9 +25,7 @@ app.use('/', (req, res, next) => {
   }
   next();
 });
-app.get('/test', async (_req, _res, next) => {
-  return next(new Error('Unhandled Error'));
-});
+app.get('/test', async (_req, _res, next) => next(new Error('Unhandled Error')));
 app.use('/users', userRouter);
 app.use('/boards', boardsRouter);
 app.use('/boards/:boardId/tasks', tasksRouter);

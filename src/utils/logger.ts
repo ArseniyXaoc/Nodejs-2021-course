@@ -1,5 +1,10 @@
 import {Request, Response, NextFunction} from 'express';
 import {finished} from 'stream';
+import {createWriteStream} from 'fs';
+import path from 'path';
+
+// const accessLogStream = createWriteStream(path.join(__dirname, 'acccess.log'), {flags: 'a'});
+
 
 const logger = (req: Request, res: Response, next: NextFunction) =>{
     const {method, url, query, body } = req;
