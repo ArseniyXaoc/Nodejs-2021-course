@@ -9,12 +9,13 @@ const log = winston.createLogger({
   level: '',
   format: winston.format.json(),
   transports: [
+    new winston.transports.Console(),
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
     new winston.transports.File({ filename: 'combined.log' }),
   ],
 });
 
-const logger = (req: Request, res: Response, next: NextFunction) => {
+const logger = (req: Request, res: Response, next: NextFunction): void => {
   const { method, url, query, body } = req;
   const start = Date.now();
   const date =new Date();
@@ -47,7 +48,8 @@ const errorHandler = (
   });
 };
 
-process.on('uncaughtException', (error: Error) => {
+function uncaughtHandler(): void {
+  process.on('uncaughtException', (error: Error) => {
   log.log({
     level: 'error',
     message: `Uncaught exception detected: ${error.message}`,
@@ -55,12 +57,15 @@ process.on('uncaughtException', (error: Error) => {
   process.exit(1);
 });
 
-process.on('unhandledRejection', (reason: Error, promise: Promise<any>) => {
+process.on('unhandledRejection', (reason: Error, promise: Promise<Error>): void => {
   log.log({
     level: 'error',
-    message: `Unhandled rejection detected: ${reason.message} on promise ${promise} `,
+    message: `Unhandled rejection detected: ${reason.message} on promise ${JSON.stringify(promise)} `,
   });
   process.exit(1);
 });
+}
 
-export { logger, errorHandler };
+
+
+export { logger, errorHandler, uncaughtHandler };
