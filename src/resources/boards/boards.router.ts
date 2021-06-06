@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const boardService = require('./boards.service');
+import { Router } from 'express';
+import boardService from './boards.service';
 
+const router = Router();
 router.route('/').get(async (req, res) => {
+  console.log(req);
   const boards = await boardService.getAll();
   res.json(boards);
 })
@@ -24,7 +26,7 @@ router.route('/:id').put(async (req, res) => {
   if (board === undefined) {
     res.status(404).send('Board not found');
   } else {
-    await boardService.update(board, req.body);
+    await boardService.update(board.id, req.body);
     res.json(board);
   }
 });
@@ -37,4 +39,4 @@ router.route('/:id').delete(async (req, res) => {
 });
 
 
-module.exports = router;
+export default router;
