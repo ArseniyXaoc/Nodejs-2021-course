@@ -1,4 +1,4 @@
-import { Router, NextFunction } from 'express';
+import { Router } from 'express';
 import boardService from './boards.service';
 
 const router = Router();
