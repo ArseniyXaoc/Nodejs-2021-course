@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install
 COPY . .
-ENV NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 ENV PORT=${PORT}
-EXPOSE 3000
+EXPOSE 4000
 CMD ["npm", "start"]
