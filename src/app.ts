@@ -14,11 +14,11 @@ app.use(express.json());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use(logger);
 app.use('/', (req, res, next) => {
-  if (req.originalUrl === '/') {
+  if (req.originalUrl === '/') {    
     res.send('Service is running!');
     return;
   }
-  next();
+  next();  
 });
 app.get('/test', async (_req, _res, next) => next(new Error('Unhandled Error')));
 app.get('/test1', async () => {

@@ -15,6 +15,7 @@ const log = winston.createLogger({
   ],
 });
 
+
 const logger = (req: Request, res: Response, next: NextFunction): void => {
   const { method, url, query, body } = req;
   const start = Date.now();

@@ -9,12 +9,14 @@
   "description": "REST service starter for RS School",
   "main": "src/server.ts",
   "scripts": {
-    "start": "nodemon src/server.ts",
+    "start": "nodemon -L src/server.ts",
     "lint": "eslint --ext .js,.ts --fix src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace",
     "jsdoc": "./node_modules/.bin/jsdoc src/resources/boards -r -c conf.json",
-    "tsstart": "ts-node src/server"
+    "tsstart": "ts-node src/server",
+    "compile": "tsc && node build/server.js",
+    "dev": "nodemon --exitcrash -L --watch src -e ts --exitcrash --exec \"npm run compile\""
   },
   "keywords": [
     "rs",

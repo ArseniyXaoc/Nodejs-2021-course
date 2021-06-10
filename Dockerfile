@@ -7,4 +7,4 @@ COPY . .
 ENV NODE_ENV=${NODE_ENV}
 ENV PORT=${PORT}
 EXPOSE 4000
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

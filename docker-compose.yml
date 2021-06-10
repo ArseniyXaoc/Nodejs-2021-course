@@ -12,6 +12,9 @@ services:
       - postgres
     networks: 
       - net
+    restart: always
+    volumes:
+      - ./src:/usr/src/app/src
   postgres:
     build: ./DockerDB/
     ports:
