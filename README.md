@@ -10,6 +10,9 @@
 
 ```
 git clone {repository URL}
+```
+Go to app catalog and run
+```
 git checkout {branch name}
 npm i
 ```
