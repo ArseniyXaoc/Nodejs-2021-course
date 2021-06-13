@@ -20,12 +20,19 @@ interface ITaskClass {
  */
 class Task {
   id: string;
+
   title: string;
+
   order: string;
+
   description: string;
+
   userId: string | null ;
+
   boardId: string;
+
   columnId: string;
+
   constructor({
     id = uuidv4(),
     title = '',
@@ -56,7 +63,7 @@ interface ITask {
   title: string;
   order: string;
   description: string;
-  userId?:  string | null;
+  userId:  string | null;
   boardId: string;
   columnId: string;
 }

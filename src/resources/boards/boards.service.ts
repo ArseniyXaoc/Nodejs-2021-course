@@ -1,5 +1,6 @@
 import boardRepo from './boards.memory.repository';
 import {IBoard} from './boards.model';
+
 const getAll = async ():Promise<IBoard[]>  => boardRepo.getAll();
 const create = async (body:IBoard): Promise<IBoard> => boardRepo.create(body);
 const getById = async (id: string): Promise<IBoard | undefined> => boardRepo.getById(id);

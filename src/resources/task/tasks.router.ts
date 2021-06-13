@@ -1,10 +1,9 @@
 import { Router } from 'express';
 import taskService from './tasks.service';
-import { ITask, Task } from './tasks.model';
+import { Task } from './tasks.model';
 /// <reference types="../../../custom" />
 const router = Router({mergeParams: true});
-router.route('/').get(async (req, res) => {
-  console.log(req);
+router.route('/').get(async (_req, res) => {
   const tasks = await taskService.getAll();
   res.json(tasks);
 })
@@ -14,7 +13,7 @@ interface IboardId {
 }
 
 router.route('/').post(async (req, res) => {
-  const  body: ITask = req.body;
+  const  {body} = req;
   const boardIdS: IboardId = JSON.parse(JSON.stringify(req.params));
   const { boardId } = boardIdS;
   const task = await taskService.create(boardId, body);

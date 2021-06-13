@@ -15,8 +15,11 @@ interface IBoard {
  */
 class Board  {
   id: string;
+
   title: string;
+
   columns: Colums[];
+
   constructor({
     id = uuidv4(),
     title = '',

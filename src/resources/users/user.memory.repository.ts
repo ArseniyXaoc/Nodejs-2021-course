@@ -1,5 +1,6 @@
 import DB from '../../common/in-memory';
 import { ISecretUser, IUser, User } from './user.model'
+
 const {USERS, TASK} = DB;
 
 /**
@@ -28,8 +29,8 @@ const addUser = async (user: ISecretUser): Promise<IUser> => {
  * @returns {Promise} User found in USERS db by id
  */
 const getById = async (id: string): Promise<ISecretUser | null>  => {
-  const user =  USERS.find(user => user.id === id);
-     return user? user: null;
+  const user =  USERS.find(_user => _user.id === id);
+     return user || null;
 };
 
 /**
@@ -57,13 +58,11 @@ const update = async (id: string, data: ISecretUser): Promise<ISecretUser | unde
  * @returns void
  */
 const uponUserTasks = (id: string) => {
-  while(TASK.findIndex(item => item.userId === id) !== -1) {
-    const x = TASK.findIndex(item => item.userId === id);
-    if(TASK[x]?.userId){
-      TASK[x]!.userId = null;
+ TASK.forEach(item => {
+    if(item.userId === id){
+      Object.assign(item, {userId: null} )
     }
-    
-  }
+  } )
 };
 
 /**

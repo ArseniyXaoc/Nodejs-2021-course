@@ -1,7 +1,7 @@
-
 import { Board, IBoard } from './boards.model';
 import DB from '../../common/in-memory';
-const {BOARD, TASK} = DB;
+
+const { BOARD, TASK } = DB;
 
 /**
  * Get all Boars by id from BOARD db
@@ -11,14 +11,14 @@ const getAll = async (): Promise<IBoard[]> => BOARD;
 
 /**
  * Create new Board to BOARD db
- * @param {Object} body 
+ * @param {Object} body
  * @param {string} body.title Board Title
  * @param {Array} body.order Board Order Array
- * @returns {Object} Created body 
+ * @returns {Object} Created body
  */
 const create = async (body: IBoard): Promise<IBoard> => {
   const board = new Board(body);
-  await BOARD.push(board)
+  await BOARD.push(board);
   return board;
 };
 
@@ -32,8 +32,11 @@ const create = async (body: IBoard): Promise<IBoard> => {
  * @param {string} data.password Board password
  * @returns {Promise} found data in BOARD db
  */
-const update = async (id: string, data: IBoard): Promise<IBoard | undefined> => {
-  const index = BOARD.findIndex(item => item.id === id);
+const update = async (
+  id: string,
+  data: IBoard
+): Promise<IBoard | undefined> => {
+  const index = BOARD.findIndex((item) => item.id === id);
   BOARD[index] = { ...BOARD[index], ...data };
   return BOARD[index];
 };
@@ -43,7 +46,8 @@ const update = async (id: string, data: IBoard): Promise<IBoard | undefined> => 
  * @param {string} id Board id
  * @returns {Promise} found Board in BOARD db
  */
-const getById = async (id: string): Promise<IBoard | undefined> => BOARD.find(board => board.id === id);
+const getById = async (id: string): Promise<IBoard | undefined> =>
+  BOARD.find((board) => board.id === id);
 
 /**
  * Delete all Tasks in deleted Board
@@ -52,13 +56,12 @@ const getById = async (id: string): Promise<IBoard | undefined> => BOARD.find(bo
  */
 const deleteBoardTasks = async (id: string) => {
   while (TASK.findIndex((item) => item.boardId === id) !== -1) {
-    TASK.findIndex((item, index) => {
-      console.log(item);
+    TASK.findIndex((_item, index) => {
       TASK.splice(index, 1);
       return null;
-    })
+    });
   }
-}
+};
 
 /**
  * Delete Board by id
@@ -67,14 +70,12 @@ const deleteBoardTasks = async (id: string) => {
  */
 const deleteId = async (id: string): Promise<boolean> => {
   deleteBoardTasks(id);
-  const index = BOARD.findIndex(item => item.id === id);
+  const index = BOARD.findIndex((item) => item.id === id);
   if (index !== -1) {
     BOARD.splice(index, 1);
-    return true
+    return true;
   }
   return false;
 };
 
-
-
-export default {getAll, create, getById, update,deleteId };
+export default { getAll, create, getById, update, deleteId };
