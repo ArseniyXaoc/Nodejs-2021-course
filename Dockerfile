@@ -1,4 +1,4 @@
-FROM node:12.18-alpine
+FROM node:14-alpine
 
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
