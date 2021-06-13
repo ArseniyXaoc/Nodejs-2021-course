@@ -11,11 +11,12 @@
 ```
 git clone {repository URL}
 git checkout {branch name}
+npm i
 ```
 
 ## Docker
+For run this app in work dirrectory run
 ```
-in work dirrectory run
 docker-compose build
 docker-compose up
 ```
