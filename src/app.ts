@@ -6,6 +6,7 @@ import userRouter from './resources/users/user.router';
 import boardsRouter from './resources/boards/boards.router';
 import tasksRouter from './resources/task/tasks.router';
 import {logger, errorHandler, uncaughtHandler} from './utils';
+import "reflect-metadata";
 
 
 const app = express();
