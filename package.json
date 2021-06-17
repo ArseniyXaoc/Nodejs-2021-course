@@ -15,8 +15,8 @@
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace",
     "jsdoc": "./node_modules/.bin/jsdoc src/resources/boards -r -c conf.json",
     "tsstart": "./node_modules/.bin/ts-node src/server",
-    "compile": "tsc && node build/server.js",
-    "dev": "nodemon --exitcrash -L --watch src -e ts --exitcrash --exec \"npm run compile\"",
+    "compile": "./node_modules/.bin/tsc && node --experimental-modules build/server.js",
+    "dev": "nodemon --exitcrash -L --watch src -e ts --exec \"npm run compile\"",
     "migration":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n",
     "migration:run":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run",
     "migration:revert":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:revert"
