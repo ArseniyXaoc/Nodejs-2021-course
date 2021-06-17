@@ -1,4 +1,3 @@
-import { createConnection } from 'typeorm';
 import express from 'express';
 import swaggerUI from 'swagger-ui-express';
 import path from 'path';
@@ -10,8 +9,7 @@ import { logger, errorHandler, uncaughtHandler } from './utils';
 import 'reflect-metadata';
 
 const app = express();
-createConnection().then((connection) => {
-  console.log(`connection ${connection.name}` );
+
   const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
   uncaughtHandler();
   app.use(express.json());
@@ -34,6 +32,5 @@ createConnection().then((connection) => {
   app.use('/boards', boardsRouter);
   app.use('/boards/:boardId/tasks', tasksRouter);
   app.use(errorHandler);
-});
 
 export default app;
