@@ -1,11 +1,21 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 import "reflect-metadata";
 
+interface IUser  {
+    id:string;
+    name: string;
+    login: string;
+  }
+  
+  interface ISecretUser extends IUser {
+    password: string;
+  }
+
 @Entity()
 export class User {
 
     @PrimaryGeneratedColumn("uuid")
-    id!: number;
+    id!: string;
 
     @Column()
     name!: string;
@@ -14,5 +24,10 @@ export class User {
     login!: string;
 
     @Column()
-    password!: number;
+    password!: string;
+
+    static toResponse(user: ISecretUser): IUser   {
+        const { id, name, login } = user;
+        return { id, name, login };
+      }
 }

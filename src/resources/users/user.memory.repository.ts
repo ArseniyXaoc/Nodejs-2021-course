@@ -1,13 +1,16 @@
-import DB from '../../common/in-memory';
-import { ISecretUser, IUser, User } from './user.model'
+// import { User } from './../../entity/User';
+// import DB from '../../common/in-memory';
+import { DeleteResult, getRepository, UpdateResult } from 'typeorm';
+import { ISecretUser, IUser } from './user.model'
+import { User } from '../../entity'
 
-const {USERS, TASK} = DB;
+// const {USERS, TASK} = DB;
 
 /**
  * get All data from USERS db
  * @returns {Promise} All User in USERS db
  */
-const getAll = async (): Promise<ISecretUser[]> => USERS;
+const getAll = async (): Promise<ISecretUser[]> => getRepository(User).find();
 
 /** 
  * Add new User in db
@@ -19,7 +22,7 @@ const getAll = async (): Promise<ISecretUser[]> => USERS;
  * @returns {Promise} Created User 
  */
 const addUser = async (user: ISecretUser): Promise<IUser> => {
-  USERS.push(user);
+  getRepository(User).create(user);
   return User.toResponse(user);
 };
 
@@ -28,9 +31,9 @@ const addUser = async (user: ISecretUser): Promise<IUser> => {
  * @param {string} id User Id
  * @returns {Promise} User found in USERS db by id
  */
-const getById = async (id: string): Promise<ISecretUser | null>  => {
-  const user =  USERS.find(_user => _user.id === id);
-     return user || null;
+const getById = async (id: string): Promise<ISecretUser | undefined>  => {
+  const user =  getRepository(User).findOne({id})
+     return user;
 };
 
 /**
@@ -43,13 +46,9 @@ const getById = async (id: string): Promise<ISecretUser | null>  => {
  * @param {string} data.password User password
  * @returns {Promise} found User data object by id
  */
-const update = async (id: string, data: ISecretUser): Promise<ISecretUser | undefined> => {
-  const index = USERS.findIndex(user => user.id === id);
-  if(index !== -1){
-    USERS[index] = { ...USERS[index], ...data };
-    return USERS[index];
-  }
-  return undefined;
+const update = async (id: string, data: ISecretUser): Promise<UpdateResult> => {
+  const user = getRepository(User).update({id}, data);
+  return user;
 };
 
 /**
@@ -57,27 +56,26 @@ const update = async (id: string, data: ISecretUser): Promise<ISecretUser | unde
  * @param {string} id User id
  * @returns void
  */
-const uponUserTasks = (id: string) => {
- TASK.forEach(item => {
-    if(item.userId === id){
-      Object.assign(item, {userId: null} )
-    }
-  } )
-};
+// const uponUserTasks = (id: string) => {
+//  TASK.forEach(item => {
+//     if(item.userId === id){
+//       Object.assign(item, {userId: null} )
+//     }
+//   } )
+// };
 
 /**
  * Delete User by id
  * @param {string} id User id
  * @returns {boolean|undefined} Founded & deleted User in USERS db or undefined if it does not found
  */
-const deleteId = async (id: string): Promise<boolean> => {
-  const index = USERS.findIndex(item => item.id === id);
-  uponUserTasks(id);
-  if (index !== -1) {
-    USERS.splice(index, 1);
-    return true;
-  }
-  return false;
-};
+const deleteId = async (id: string): Promise<DeleteResult> => getRepository(User).delete({id})
+  // const index = USERS.findIndex(item => item.id === id);
+  // uponUserTasks(id);
+  // if (index !== -1) {
+  //   USERS.splice(index, 1);
+  //   return true;
+  // }
+  // return false;
 
 export = { getAll, addUser, getById, update, deleteId };
