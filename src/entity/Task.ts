@@ -4,24 +4,24 @@ import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 export class Task {
 
     @PrimaryGeneratedColumn("uuid")
-    id!: number;
+    id: number;
 
     @Column()
-    title!: string;
+    title: string;
 
     @Column()
-    order!: string;
+    order: string;
 
     @Column()
-    description!: string;
+    description: string;
 
     @Column()
-    userId!: string;
+    userId: string;
 
     @Column()
-    boardId!: string;
+    boardId: string;
 
     @Column()
-    columnId!: string;
+    columnId: string;
 
 }

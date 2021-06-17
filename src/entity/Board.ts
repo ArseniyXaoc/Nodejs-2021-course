@@ -4,13 +4,13 @@ import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 export class Board {
 
     @PrimaryGeneratedColumn("uuid")
-    id!: number;
+    id: number;
 
     @Column()
-    title!: string;
+    title: string;
 
     @Column()
-    order!: number;
+    order: number;
 
 }
 
