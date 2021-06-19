@@ -1,7 +1,13 @@
 
+import path from 'path';
+import dotenv from 'dotenv';
 import ENV  from './common/config';
 import app from './app';
 import { TryDbConnect } from './db/connection';
+
+dotenv.config({
+  path: path.join(__dirname, '../../.env')
+});
 
 
 const { PORT } = ENV;
