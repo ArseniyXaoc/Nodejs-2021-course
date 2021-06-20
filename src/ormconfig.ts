@@ -1,11 +1,11 @@
 import { ConnectionOptions } from "typeorm"
 
-const { POSTGRES_HOST } = process.env
+// const { POSTGRES_HOST } = process.env || 'localhost'
 
  const x: ConnectionOptions = {
    name: "default",
    type: "postgres",
-   host: POSTGRES_HOST,
+   host: '127.0.0.1',
    port: 5432,
    username: "user",
    password: "123",
@@ -13,7 +13,7 @@ const { POSTGRES_HOST } = process.env
    synchronize: false,
    logging: false,
    entities: [
-      "build/entity/**/*.js"
+      "src/entity/**/*.ts"
    ],
    migrations: [
       "build/migration/**/*.js"

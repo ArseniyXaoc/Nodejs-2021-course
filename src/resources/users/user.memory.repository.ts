@@ -22,8 +22,8 @@ const getAll = async (): Promise<ISecretUser[]> => getRepository(User).find();
  * @returns {Promise} Created User 
  */
 const addUser = async (user: ISecretUser): Promise<IUser> => {
-  getRepository(User).create(user);
-  return User.toResponse(user);
+  const savedUser = await getRepository(User).save(user);
+  return User.toResponse(savedUser);
 };
 
 /** 
@@ -32,8 +32,9 @@ const addUser = async (user: ISecretUser): Promise<IUser> => {
  * @returns {Promise} User found in USERS db by id
  */
 const getById = async (id: string): Promise<ISecretUser | undefined>  => {
-  const user =  getRepository(User).findOne({id})
-     return user;
+  const userRepository = getRepository(User);
+  const user = await userRepository.findOne(id);
+  return user;
 };
 
 /**

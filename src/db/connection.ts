@@ -1,11 +1,11 @@
-import { getConnection, createConnection} from "typeorm";
+import { getConnection, createConnection, Connection} from "typeorm";
 import { logMsgErr, logMsgInfo } from "../utils";
 import x from "../ormconfig"
 
 const { POSTGRES_HOST } = process.env
-
+let connection: Connection;
 const connectionToDb =async () => {
-    let connection;
+    
      try{
          connection = getConnection()
      }
@@ -21,8 +21,8 @@ const connectionToDb =async () => {
             
             await createConnection(x);
         }
-        connection = getConnection().isConnected
-        if(connection){
+        
+        if(getConnection().isConnected){
             logMsgInfo(`Connected to DB on ${POSTGRES_HOST};`);
         }        
      }
@@ -32,7 +32,7 @@ const connectionToDb =async () => {
      }
 }
 
-export const TryDbConnect = async (callback: () => void): Promise<void> => {
+ const TryDbConnect = async (callback: () => void): Promise<void> => {
     try {
         await connectionToDb();
         callback();
@@ -41,3 +41,5 @@ export const TryDbConnect = async (callback: () => void): Promise<void> => {
         logMsgErr(err);
     }
 }
+
+export {TryDbConnect, connection}

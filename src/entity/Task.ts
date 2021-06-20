@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm";
+import { User, Board, Columns } from ".";
 
 @Entity()
 export class Task {
@@ -10,18 +11,30 @@ export class Task {
     title: string;
 
     @Column()
-    order: string;
+    order: number;
 
     @Column()
     description: string;
 
-    @Column()
-    userId: string;
+    @ManyToOne(() => User)
+    @JoinColumn()
+    user: User;
 
-    @Column()
-    boardId: string;
+    @ManyToOne(() => Board)
+    @JoinColumn()
+    board: Board;
 
-    @Column()
-    columnId: string;
+    @ManyToOne(() => Columns)
+    @JoinColumn()
+    column: Columns;
+
+    // @Column({ nullable: true})
+    // userId: string;
+
+    // @Column({ nullable: true})
+    // boardId: string;
+
+    // @Column({ nullable: true})
+    // columnId: string;
 
 }

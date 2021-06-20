@@ -1,1 +1,107 @@
 {"level":"error","message":"Unhandled rejection detected: connect ECONNREFUSED 172.19.0.2:5432 on promise {} "}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"No repository for \"User\" was found. Looks like this entity is not registered in current \"default\" connection?"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"No repository for \"User\" was found. Looks like this entity is not registered in current \"default\" connection?"}
+{"level":"error","message":"No repository for \"User\" was found. Looks like this entity is not registered in current \"default\" connection?"}
+{"level":"error","message":"No repository for \"User\" was found. Looks like this entity is not registered in current \"default\" connection?"}
+{"level":"error","message":"No repository for \"User\" was found. Looks like this entity is not registered in current \"default\" connection?"}
+{"level":"error","message":"No repository for \"User\" was found. Looks like this entity is not registered in current \"default\" connection?"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"Uncaught exception detected: listen EADDRINUSE: address already in use :::4000"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"Uncaught exception detected: listen EADDRINUSE: address already in use :::4000"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"Error: connect ECONNREFUSED 127.0.0.1:5432"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"TypeError: Cannot read property 'isConnected' of undefined"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"Cannot read property 'createQueryBuilder' of undefined"}
+{"level":"error","message":"Cannot read property 'createQueryBuilder' of undefined"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"invalid input syntax for type uuid: \"1\""}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"Cannot access 'user' before initialization"}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
+{"level":"error","message":"ConnectionNotFoundError: Connection \"default\" was not found."}
