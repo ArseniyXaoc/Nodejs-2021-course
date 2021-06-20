@@ -1,8 +1,18 @@
-import {Entity, PrimaryGeneratedColumn, Column,ManyToOne , JoinColumn } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column,ManyToOne  } from "typeorm";
 import { User, Board } from ".";
 
+interface ITask {
+    
+title:string
+order:number
+id:string
+description:string
+columnId:string | null
+boardId:string | null
+}
+
 @Entity()
-export class Task {
+ class Task {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -16,13 +26,18 @@ export class Task {
     @Column()
     description: string;
 
-    @ManyToOne(() => User, user => user.id, {nullable: true})
-    @JoinColumn({ name: "userId" })
-    userId: string | null;
+    @ManyToOne(() => User, user => user.id, {nullable: true, onDelete: 'SET NULL'})
+    @Column('uuid', {name: "userId", nullable: true})
+    userId: string | null
+    // @JoinColumn({ name: "userId" })
+    // userId: string | null;
 
-    @ManyToOne(() => Board, board => board.id, {nullable: true})
-    @JoinColumn({ name: "boardId" })
-    boardId: string | null;
+    @ManyToOne((_type) => Board, {nullable: true, onDelete: 'SET NULL'})
+    @Column('uuid', {name: "boardId", nullable: true})
+    boardId: string | null
+    //@ManyToOne(() => Board, board => board.id, {nullable: true, onDelete: 'SET NULL'})
+    // @JoinColumn({ name: "boardId.id" })
+    // boardId: string | null;
 
     @Column({nullable: true})
     columnId: string;
@@ -35,5 +50,8 @@ export class Task {
 
     // @Column({ nullable: true})
     // columnId: string;
+    
 
 }
+
+export {Task, ITask}

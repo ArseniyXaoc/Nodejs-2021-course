@@ -64,7 +64,7 @@ interface ITask {
   order: number;
   description: string;
   userId:  string | null;
-  boardId: string;
+  boardId: string | null;
   columnId: string;
 }
 
