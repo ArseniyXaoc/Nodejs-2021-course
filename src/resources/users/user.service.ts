@@ -1,12 +1,12 @@
 import { DeleteResult, UpdateResult } from 'typeorm';
 import usersRepo from './user.memory.repository';
-import {User, ISecretUser} from './user.model';
+import { ISecretUser, IUser} from './user.model';
+
 
 const getAll = (): Promise<ISecretUser[]>  => usersRepo.getAll();
 
-const create =  async (data:ISecretUser): Promise<ISecretUser> => {
-  const user = new User(data);
-  usersRepo.addUser(user);
+const create =  async (data:ISecretUser): Promise<IUser> => {
+  const user = await usersRepo.addUser(data);
   return user;
 }
 

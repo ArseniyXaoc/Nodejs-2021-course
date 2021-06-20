@@ -34,12 +34,12 @@ router.route('/:id').get(async (req, res, next) => {
 
 router.route('/:id').put(async (req, res, next) => {
   try {
-    const board = await boardService.getById(req.params.id);
-    if (board === undefined) {
-      res.status(404).send('Board not found');
-    } else {
-      await boardService.update(board.id, req.body);
+     const board = await boardService.update(req.params.id, req.body);
+    if(board){
       res.json(board);
+    }
+    else{
+      res.status(404).json('Board not found');
     }
   } catch (error) {
     next(error);

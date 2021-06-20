@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm";
-import { User, Board, Columns } from ".";
+import { User, Board } from ".";
 
 @Entity()
 export class Task {
@@ -22,11 +22,10 @@ export class Task {
 
     @ManyToOne(() => Board)
     @JoinColumn()
-    board: Board;
+    board: string;
 
-    @ManyToOne(() => Columns)
-    @JoinColumn()
-    column: Columns;
+    @Column()
+    columnsId: string;
 
     // @Column({ nullable: true})
     // userId: string;

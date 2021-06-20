@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Colums from './board.colums.model';
 
 interface IBoard {
-  id: string,
+  id: number,
   title: string,
   columns: Colums[],
 }
