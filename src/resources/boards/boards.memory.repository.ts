@@ -5,7 +5,7 @@ import { Board, Task } from '../../entity'
  * Get all Boars by id from BOARD db
  * @returns {Promise} All Board from BOARD db
  */
-const getAll = async () => await getRepository(Board).find();
+const getAll = async () => getRepository(Board).find();
 
 /**
  * Create new Board to BOARD db
@@ -35,7 +35,7 @@ const update = async (id: string, data: Board): Promise<UpdateResult> => {
     .createQueryBuilder()
     .update(Board)
     .set({ title, columns })
-    .where("id = :id", { id: id })
+    .where("id = :id", { id })
     .execute();
   return board;
 };

@@ -35,7 +35,7 @@ boardId:string | null
     @ManyToOne((_type) => Board, {nullable: true, onDelete: 'SET NULL'})
     @Column('uuid', {name: "boardId", nullable: true})
     boardId: string | null
-    //@ManyToOne(() => Board, board => board.id, {nullable: true, onDelete: 'SET NULL'})
+    // @ManyToOne(() => Board, board => board.id, {nullable: true, onDelete: 'SET NULL'})
     // @JoinColumn({ name: "boardId.id" })
     // boardId: string | null;
 

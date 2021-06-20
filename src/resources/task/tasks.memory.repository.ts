@@ -12,7 +12,7 @@ import { Task } from '../../entity/Task';
  * Return all Tasks from TASKS db
  * @returns {Promise} All Tasks
  */
-const getAll = async (): Promise<Task[]> => await getRepository(Task).find();
+const getAll = async (): Promise<Task[]> => getRepository(Task).find();
 
 /**
  * Create new Task and add to TASK db
@@ -64,11 +64,11 @@ const update = async (id: string, data: Task): Promise<UpdateResult> => {
       title,
       order,
       description,
-      userId: userId,
-      boardId: boardId,
+      userId,
+      boardId,
       columnId,
     })
-    .where('id = :id', { id: id })
+    .where('id = :id', { id })
     .execute();
   return task;
 };

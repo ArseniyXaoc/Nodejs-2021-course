@@ -3,6 +3,7 @@ import { logMsgErr, logMsgInfo } from "../utils";
 import x from "../ormconfig"
 
 const { POSTGRES_HOST } = process.env
+// eslint-disable-next-line import/no-mutable-exports
 let connection: Connection;
 const connectionToDb =async () => {
     
