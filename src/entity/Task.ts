@@ -1,11 +1,11 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column,ManyToOne , JoinColumn } from "typeorm";
 import { User, Board } from ".";
 
 @Entity()
 export class Task {
 
     @PrimaryGeneratedColumn("uuid")
-    id: number;
+    id: string;
 
     @Column()
     title: string;
@@ -16,16 +16,16 @@ export class Task {
     @Column()
     description: string;
 
-    @ManyToOne(() => User)
-    @JoinColumn()
-    user: User;
+    @ManyToOne(() => User, user => user.id, {nullable: true})
+    @JoinColumn({ name: "userId" })
+    userId: string | null;
 
-    @ManyToOne(() => Board)
-    @JoinColumn()
-    board: string;
+    @ManyToOne(() => Board, board => board.id, {nullable: true})
+    @JoinColumn({ name: "boardId" })
+    boardId: string | null;
 
-    @Column()
-    columnsId: string;
+    @Column({nullable: true})
+    columnId: string;
 
     // @Column({ nullable: true})
     // userId: string;

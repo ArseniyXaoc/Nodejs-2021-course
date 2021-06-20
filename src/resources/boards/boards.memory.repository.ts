@@ -1,10 +1,5 @@
-// import { IBoard } from './boards.model';
 import { DeleteResult, getRepository, UpdateResult, getConnection } from 'typeorm';
-// import { ISecretUser, IUser } from './user.model'
 import { Board, Task } from '../../entity'
-
-
-// const { BOARD, TASK } = DB;
 
 /**
  * Get all Boars by id from BOARD db
@@ -43,9 +38,6 @@ const update = async (id: string, data: Board): Promise<UpdateResult> => {
     .where("id = :id", { id: id })
     .execute();
   return board;
-  // const index = BOARD.findIndex((item) => item.id === id);
-  // BOARD[index] = { ...BOARD[index], ...data };
-  // return BOARD[index];
 };
 
 /**
@@ -66,7 +58,7 @@ const getById = async (id: string): Promise<Board | undefined> => {
  */
 const deleteBoardTasks = async (id: string) => {
   const taskRepository = getRepository(Task)
-  await taskRepository.delete({board: id});
+  await taskRepository.delete({boardId: id});
 };
 
 /**

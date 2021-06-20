@@ -4,7 +4,7 @@ import {Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 export class Board {
 
     @PrimaryGeneratedColumn("uuid")
-    id: number;
+    id: string;
 
     @Column()
     title: string;

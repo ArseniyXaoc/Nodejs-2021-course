@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getRepository, getConnection } from 'typeorm';
-import { User } from '../../entity/User';
+import { User, Task } from '../../entity';
 import usersService from './user.service';
 
 const router = Router();
@@ -62,7 +62,16 @@ router.route('/:id').put(async (req, res, next) => {
 
 router.route('/:id').delete(async (req, res, next) => {
   try {
+
+    await getConnection()
+    .createQueryBuilder()
+    .update(Task)
+    .set({ userId: null })
+    .where("userId = :id", { id: req.params.id })
+    .execute();
+    
     const user = await usersService.deleteId(req.params.id);
+
     if (user === undefined) {
       res.status(404).json('User not found');
     } else res.status(204).json('The user has been deleted');

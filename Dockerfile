@@ -7,4 +7,6 @@ COPY . .
 ENV NODE_ENV=${NODE_ENV}
 ENV PORT=${PORT}
 EXPOSE 4000
+CMD ["npm", "run", "migration"]
+CMD ["npm", "run", "migration:run"]
 CMD ["npm", "run", "dev"]

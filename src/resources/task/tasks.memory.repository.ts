@@ -1,14 +1,23 @@
-import DB from '../../common/in-memory';
-import {Task, ITask} from './tasks.model';
+import { DeleteResult, getRepository, UpdateResult, getConnection } from 'typeorm';
+import { Task } from '../../entity/Task';
 
-const {TASK} = DB;
-
+interface ITask {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  userId:  string | null;
+  boardId: string;
+  columnId: string;
+}
 
 /**
  * Return all Tasks from TASKS db
  * @returns {Promise} All Tasks
  */
-const getAll = async (): Promise<ITask[]> => TASK;
+const getAll = async (): Promise<Task[]> => await getRepository(Task).find();;
+
+
 
 /**
  * Create new Task and add to TASK db
@@ -24,9 +33,13 @@ const getAll = async (): Promise<ITask[]> => TASK;
  * @param {string} body.columnId Column id for new Task * 
  * @returns {Promise} Created Task
  */
-const create = async (boardId: string, body: ITask): Promise<ITask> => {
-  const task = new Task({ ...body, boardId });
-  await TASK.push(task)
+const create = async (boardId: string, body: ITask): Promise<Task> => {
+
+  const {title,order,description,columnId, userId } = body;
+  const x = {
+    title,order,description,columnId, userId, boardId
+  }
+  const task = await getRepository(Task).save(x);
   return task;
 };
 
@@ -43,10 +56,15 @@ const create = async (boardId: string, body: ITask): Promise<ITask> => {
  * @param {string} data.columnId Column id for new Task * 
  * @returns {Promise} Updated Task
  */
-const update = async (id: string, data: ITask): Promise<ITask | undefined> => {
-  const index = TASK.findIndex(item => item.id === id);
-  TASK[index] = { ...TASK[index], ...data };
-  return TASK[index];
+const update = async (id: string, data: ITask): Promise<UpdateResult> => {
+  const {title, order, description, userId, boardId, columnId } = data;
+  const task = await getConnection()
+    .createQueryBuilder()
+    .update(Task)
+    .set({ title, order, description, userId: userId, boardId: boardId, columnId })
+    .where("id = :id", { id: id })
+    .execute();
+  return task;
 };
 
 /**
@@ -54,20 +72,21 @@ const update = async (id: string, data: ITask): Promise<ITask | undefined> => {
  * @param {string} id Task Id
  * @returns {Promise} Found Task by Id in TASK db
  */
-const getById = async (id: string): Promise<ITask | undefined> => TASK.find(task => task.id === id);
+const getById = async (id: string): Promise<Task | undefined> => {
+  const taskRepository = getRepository(Task);
+  const task = await taskRepository.findOne(id);
+  return task;
+}
 
 /**
  * Delete Task by id in TASK db
  * @param {string} id Task id
  * @returns {boolean|undefined} Deleted task from TASK db of undefined if Task do not found
  */
-const deleteId = async (id: string): Promise<boolean> => {
-  const index = TASK.findIndex(item => item.id === id);
-  if (index !== -1) {
-    TASK.splice(index, 1);
-    return true;
-  }
-  return false;
+const deleteId = async (id: string): Promise<DeleteResult> => {
+  const taskRepository = getRepository(Task)
+  const task = await taskRepository.delete(id);
+  return task;
 };
 
 export default {getAll, create, getById, update,deleteId};
