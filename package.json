@@ -17,9 +17,9 @@
     "tsstart": "./node_modules/.bin/ts-node src/server",
     "compile": "./node_modules/.bin/tsc && node --experimental-modules build/server.js",
     "dev": "nodemon --exitcrash -L --watch src -e ts --exec \"npm run compile\"",
-    "migration":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n",
-    "migration:run":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run",
-    "migration:revert":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:revert"
+    "migration": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n",
+    "migration:run": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "keywords": [
     "rs",
@@ -51,11 +51,13 @@
     ]
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cross-env": "7.0.3",
     "dotenv": "9.0.0",
     "express": "4.17.1",
     "joi": "^17.4.0",
     "jsdoc": "^3.6.7",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.2",
@@ -66,7 +68,9 @@
     "yamljs": "0.3.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.12",
+    "@types/jsonwebtoken": "^8.5.2",
     "@types/node": "^15.6.1",
     "@types/swagger-ui-express": "^4.1.2",
     "@types/uuid": "^8.3.0",
