@@ -22,6 +22,7 @@ const app = express();
     }
     next();
   });
+  app.get('/login', loginRouter)
   app.get('/test', async (_req, _res, next) =>
     next(new Error('Unhandled Error'))
   );

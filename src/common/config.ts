@@ -5,11 +5,12 @@ dotenv.config({
   path: path.join(__dirname, '../../.env')
 });
 
-const { JWT_SECRET_KEY, NODE_ENV, AUTH_MODE, PORT, MONGO_CONNECTION_STRING } = process.env;
+const { JWT_SECRET_KEY, NODE_ENV, AUTH_MODE, PORT, MONGO_CONNECTION_STRING, AUTH_KEY } = process.env;
 export default {
   PORT,
   NODE_ENV,
   MONGO_CONNECTION_STRING,
   JWT_SECRET_KEY,
-  AUTH_MODE: AUTH_MODE === 'true'
+  AUTH_MODE: AUTH_MODE === 'true',
+  AUTH_KEY
 };
