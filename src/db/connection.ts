@@ -28,7 +28,6 @@ const connectionToDb =async () => {
         }        
      }
      catch (err) {
-         console.log(err);
         logMsgErr(err);
      }
 }
@@ -38,7 +37,6 @@ const connectionToDb =async () => {
         await connectionToDb();
         callback();
     } catch (err) {
-        console.log(err);
         logMsgErr(err);
     }
 }
