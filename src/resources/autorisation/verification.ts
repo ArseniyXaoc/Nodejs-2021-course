@@ -4,18 +4,24 @@ import {  NextFunction, Request, Response } from 'express';
 import { User } from '../../entity/User';
 import ENV from '../../common/config';
 
+const resForbidden = (res: Response) => {
+  res.status(401).send({ auth: false, message: 'Unautorized' });
+}
+
 export function validateSassion(
   req: Request,
   res: Response,
   next: NextFunction
 ): void {
-  const sessionToken = req.headers.authorization;
+  const sessionToken:string | undefined = req.headers.authorization;
 
   const secretKey = ENV.AUTH_KEY || '';
   if (!sessionToken) {
-    res.status(401).send({ auth: false, message: 'Forbidden' });
+    resForbidden(res);
   } else {
-    jwt.verify(sessionToken.slice(7), secretKey, (_err, decoded) => {
+    const [type, token] = sessionToken.split(' ');
+    if(token && type === 'Bearer'){
+          jwt.verify(token, secretKey, (_err, decoded) => {
       if (decoded) {
         const user = getRepository(User).findOne(decoded['id']);
         if (user) {
@@ -25,9 +31,13 @@ export function validateSassion(
           res.status(403).send({ auth: false, message: 'Forbidden' });
         }
       } else {
-        res.status(401).send({ auth: false, message: 'Unautorized'});
+        resForbidden(res);
       }
     });
+    } else {
+      resForbidden(res);
+    }
+
   }
 }
 

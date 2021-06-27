@@ -18,13 +18,17 @@ router.route('/').post(async (req, res, next) => {
             const secretKey: jwt.Secret = ENV.AUTH_KEY || '';
             const payload = { userId: data.id, login: data.login };
             const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
-            res.send({token});
+            if(token){
+              res.send({token});
+            } else {
+              res.status(403).send({ error: 'Forbidden' });
+            }
           } else {
-            res.status(502).send({ error: 'Passwords do not match.' });
+            res.status(502).send({ error: 'Forbidden' });
           }
         });
       } else {
-        res.status(403).send({ error: 'User not found.' });
+        res.status(403).send({ error: 'Forbidden' });
       }
     });
   } catch (err) {
