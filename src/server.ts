@@ -1,18 +1,21 @@
-import sequelize from './utils/db';
+
+import path from 'path';
+import dotenv from 'dotenv';
 import ENV  from './common/config';
 import app from './app';
+import { TryDbConnect } from './db/connection';
+
+dotenv.config({
+  path: path.join(__dirname, '../../.env')
+});
+
 
 const { PORT } = ENV;
-
-app.listen(PORT, () =>
+TryDbConnect(() => {
+  app.listen(PORT, () =>
   // eslint-disable-next-line no-console
   console.log(`App is running on http://localhost:${PORT}`)
 );
+})
 
-sequelize.authenticate().then(
-  () => {
-      console.log('Connected to DB');
-  }
-).catch((err: Error) =>{
-  throw new Error(err.message);
-});
+

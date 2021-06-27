@@ -14,12 +14,11 @@ services:
       - net
     restart: always
     volumes:
-      - ./src:/usr/src/app/src
       - ./log:/usr/src/app/log
   postgres:
     build: ./DockerDB/
     ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+      - ${POSTGRES_PORT_SERV}:${POSTGRES_PORT}
     volumes: 
       - postgre_db:/var/lib/postgresql/data
     environment:

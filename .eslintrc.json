@@ -23,8 +23,6 @@
      "eslint:recommended",
      "plugin:@typescript-eslint/eslint-recommended",
      "plugin:@typescript-eslint/recommended",
-    // "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    // "plugin:node/recommended",
      "airbnb-typescript/base",
      "prettier"
   ],
@@ -34,7 +32,8 @@
     "node/no-unsupported-features/es-syntax": "off",
     "no-underscore-dangle": "off",
     "import/prefer-default-export": "off",
-    "@typescript-eslint/no-unused-vars": "off"
+    "@typescript-eslint/no-unused-vars": "off",
+    "import/no-cycle": "off"
   },
   "plugins": ["@typescript-eslint"]
 }

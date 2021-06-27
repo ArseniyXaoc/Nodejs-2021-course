@@ -14,9 +14,12 @@
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace",
     "jsdoc": "./node_modules/.bin/jsdoc src/resources/boards -r -c conf.json",
-    "tsstart": "ts-node src/server",
-    "compile": "tsc && node build/server.js",
-    "dev": "nodemon --exitcrash -L --watch src -e ts --exitcrash --exec \"npm run compile\""
+    "tsstart": "./node_modules/.bin/ts-node src/server",
+    "compile": "./node_modules/.bin/tsc && node --experimental-modules build/server.js",
+    "dev": "nodemon --exitcrash -L --watch src -e ts --exec \"npm run compile\"",
+    "migration":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:generate -n",
+    "migration:run":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert":"./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "keywords": [
     "rs",
@@ -54,8 +57,10 @@
     "joi": "^17.4.0",
     "jsdoc": "^3.6.7",
     "pg": "^8.6.0",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.2",
     "swagger-ui-express": "4.1.6",
+    "typeorm": "^0.2.34",
     "uuid": "8.3.2",
     "winston": "^3.3.3",
     "yamljs": "0.3.0"

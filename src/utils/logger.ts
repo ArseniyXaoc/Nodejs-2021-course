@@ -5,7 +5,7 @@ import winston from 'winston';
 // import path from 'path';
 
 // const accessLogStream = createWriteStream(path.join(__dirname, 'acccess.log'), {flags: 'a'});
-const log = winston.createLogger({
+const Log = winston.createLogger({
   level: '',
   format: winston.format.json(),
   transports: [
@@ -26,7 +26,7 @@ const logger = (req: Request, res: Response, next: NextFunction): void => {
   finished(res, () => {
     const ms = Date.now() - start;
     const { statusCode } = res;
-    log.log({
+    Log.log({
       level: 'info',
       message: `${method} ${url} ${statusCode} ${JSON.stringify(query)} ${JSON.stringify(body)} ${min} ${sec} [${ms}ms]`,
     });
@@ -39,7 +39,7 @@ const errorHandler = (
   res: Response,
   _next: NextFunction
 ): void => {
-  log.log({
+  Log.log({
     level: 'error',
     message: err.message,
   });
@@ -51,7 +51,7 @@ const errorHandler = (
 
 function uncaughtHandler(): void {
   process.on('uncaughtException', (error: Error) => {
-  log.log({
+  Log.log({
     level: 'error',
     message: `Uncaught exception detected: ${error.message}`,
   });
@@ -59,7 +59,7 @@ function uncaughtHandler(): void {
 });
 
 process.on('unhandledRejection', (reason: Error, promise: Promise<Error>): void => {
-  log.log({
+  Log.log({
     level: 'error',
     message: `Unhandled rejection detected: ${reason.message} on promise ${JSON.stringify(promise)} `,
   });
@@ -67,6 +67,18 @@ process.on('unhandledRejection', (reason: Error, promise: Promise<Error>): void 
 });
 }
 
+const logMsgErr = (msg: string) => {
+  Log.log({
+    level: 'error',
+    message: `${msg}`,
+  });
+}
 
+const logMsgInfo = (msg: string) => {
+  Log.log({
+    level: 'info',
+    message: `${msg}`,
+  });
+}
 
-export { logger, errorHandler, uncaughtHandler };
+export { logger, errorHandler, uncaughtHandler, logMsgErr, logMsgInfo };

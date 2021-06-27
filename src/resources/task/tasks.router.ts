@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import taskService from './tasks.service';
-import { Task } from './tasks.model';
 /// <reference types="../../../custom" />
 const router = Router({ mergeParams: true });
 router.route('/').get(async (_req, res) => {
@@ -18,7 +17,7 @@ router.route('/').post(async (req, res, next) => {
     const boardIdS: IboardId = JSON.parse(JSON.stringify(req.params));
     const { boardId } = boardIdS;
     const task = await taskService.create(boardId, body);
-    res.status(201).json(Task.toResponse(task));
+    res.status(201).json(task);
   } catch (error) {
     next(error);
   }
@@ -27,9 +26,9 @@ router.route('/').post(async (req, res, next) => {
 router.route('/:id').get(async (req, res, next) => {
   try {
     const task = await taskService.getById(req.params.id);
-    if (task === undefined) {
-      res.status(404).json('task not found');
-    } else res.json(task);
+    if (task) {
+      res.json(task);
+    } else res.status(404).json('task not found');
   } catch (error) {
     next(error);
   }

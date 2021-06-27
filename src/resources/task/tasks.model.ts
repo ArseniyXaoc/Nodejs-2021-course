@@ -61,10 +61,10 @@ class Task {
 interface ITask {
   id: string;
   title: string;
-  order: string;
+  order: number;
   description: string;
   userId:  string | null;
-  boardId: string;
+  boardId: string | null;
   columnId: string;
 }
 

@@ -1,3 +1,3 @@
-import { logger, errorHandler, uncaughtHandler } from './logger';
+import { logger, errorHandler, uncaughtHandler, logMsgErr, logMsgInfo } from './logger';
 
-export {logger, errorHandler, uncaughtHandler};
+export {logger, errorHandler, uncaughtHandler, logMsgErr, logMsgInfo};
