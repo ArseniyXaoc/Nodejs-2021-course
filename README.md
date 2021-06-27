@@ -30,7 +30,7 @@ docker compose build
 docker compose up;
 ```
 Оставляем запущенной только БД
-```
+
 Запускаем тесты
 ```
 npm run test:auth
