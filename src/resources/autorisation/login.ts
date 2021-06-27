@@ -19,7 +19,7 @@ router.route('/').post(async (req, res, next) => {
             const payload = { userId: data.id, login: data.login };
             const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
             if(token){
-              res.send({token});
+              res.status(200).send({token});
             } else {
               res.status(403).send({ error: 'Forbidden' });
             }

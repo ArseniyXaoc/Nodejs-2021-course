@@ -1,13 +1,13 @@
 import { ConnectionOptions } from "typeorm"
 
- // const { POSTGRES_HOST } = process.env;
-  const  POSTGRES_HOST  = 'localhost';
+  const { POSTGRES_HOST } = process.env;
+ // const  POSTGRES_HOST  = 'localhost';
 
  const x: ConnectionOptions = {
    name: "default",
    type: "postgres",
    host: POSTGRES_HOST,
-   port: 5433,
+   port: 5432,
    username: "user",
    password: "123",
    database: "userdb",
