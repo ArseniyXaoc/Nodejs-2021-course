@@ -8,8 +8,7 @@ export class UserController {
     @Get()
     @HttpCode(HttpStatus.OK)
     getAllUsers() {
-        
-        return this.userService.getAll();
+        return this.userService.findAll();
     }
 
     // @Post
