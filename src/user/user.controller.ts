@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, UseFilters } from '@nestjs/common';
+import { FindOneParams } from './dto/IsUUIDString';
 
 import { HttpExceptionFilter } from "../http-exception.filter";
 import { UserService } from './user.service';
@@ -22,8 +23,8 @@ export class UserController {
 
   @Get(':id')
   @UseFilters(HttpExceptionFilter)
-  async findOne(@Param('id') id: string) {
-    const user = await this.userService.findOne(id);
+  async findOne(@Param() params: FindOneParams) {
+    const user = await this.userService.findOne(params.id);
     if(!user) throw new NotFoundException()
     return user;
   }
