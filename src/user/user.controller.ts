@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, UseFilters } from '@nestjs/common';
+
+import { HttpExceptionFilter } from "../http-exception.filter";
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+
 
 @Controller('users')
 export class UserController {
@@ -18,8 +21,9 @@ export class UserController {
   }
 
   @Get(':id')
+  @UseFilters(new HttpExceptionFilter)
   async findOne(@Param('id') id: string) {
-    const user = this.userService.findOne(id);
+    const user = await this.userService.findOne(id);
     if(!user) throw new NotFoundException()
     return user;
   }
