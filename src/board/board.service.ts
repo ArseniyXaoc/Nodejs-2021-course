@@ -1,20 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { CreateBoardDto } from './dto/create-board.dto';
+import { UpdateBoardDto } from './dto/update-board.dto';
 
 @Injectable()
 export class BoardService {
+  create(createBoardDto: CreateBoardDto) {
+    return 'This action adds a new board';
+  }
 
-    static getAll(){
-    }
+  findAll() {
+    return `This action returns all board`;
+  }
 
-    static create(){
-    }
+  findOne(id: number) {
+    return `This action returns a #${id} board`;
+  }
 
-    static getById(){
-    }
+  update(id: number, updateBoardDto: UpdateBoardDto) {
+    return `This action updates a #${id} board`;
+  }
 
-    static update(){
-    }
-
-    static delete(){
-    }
+  remove(id: number) {
+    return `This action removes a #${id} board`;
+  }
 }

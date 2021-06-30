@@ -1,20 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TaskService {
+  create(createTaskDto: CreateTaskDto) {
+    return 'This action adds a new task';
+  }
 
-    static getAll(){
-    }
+  findAll() {
+    return `This action returns all task`;
+  }
 
-    static create(){
-    }
+  findOne(id: number) {
+    return `This action returns a #${id} task`;
+  }
 
-    static getById(){
-    }
+  update(id: number, updateTaskDto: UpdateTaskDto) {
+    return `This action updates a #${id} task`;
+  }
 
-    static update(){
-    }
-
-    static delete(){
-    }
+  remove(id: number) {
+    return `This action removes a #${id} task`;
+  }
 }
