@@ -21,7 +21,7 @@ export class UserController {
   }
 
   @Get(':id')
-  @UseFilters(new HttpExceptionFilter)
+  @UseFilters(HttpExceptionFilter)
   async findOne(@Param('id') id: string) {
     const user = await this.userService.findOne(id);
     if(!user) throw new NotFoundException()
