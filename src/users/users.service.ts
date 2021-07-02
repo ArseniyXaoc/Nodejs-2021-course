@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -17,7 +16,7 @@ export class UsersService {
     private taskRepository: Repository<Task>,
   ) {}
 
- async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     const user: IUser = await this.userRepository.save(createUserDto);
     delete user.password;
     return user;
@@ -28,16 +27,20 @@ export class UsersService {
   }
 
   findOne(id: string) {
-    return this.userRepository.findOne(id, {select:['id', 'name', 'login']});
+    return this.userRepository.findOne(id, { select: ['id', 'name', 'login'] });
+  }
+
+  findLogin({ login, password }: { login: string; password: string }) {
+    return this.userRepository.findOne({ where: { login, password } });
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userRepository.update({id}, updateUserDto);
+    return this.userRepository.update({ id }, updateUserDto);
   }
 
   remove(id: string) {
-    this.taskRepository.update({userId:id}, {userId:null});
-    return this.userRepository.delete({id});
+    this.taskRepository.update({ userId: id }, { userId: null });
+    return this.userRepository.delete({ id });
   }
 }
 
@@ -46,4 +49,4 @@ type IUser = {
   name: string;
   login: string;
   password?: string;
-}
+};
