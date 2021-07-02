@@ -1,7 +1,9 @@
+
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { Task } from 'src/task/entities/task.entity';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -11,6 +13,8 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(Task)
+    private taskRepository: Repository<Task>,
   ) {}
 
  async create(createUserDto: CreateUserDto) {
@@ -32,6 +36,7 @@ export class UsersService {
   }
 
   remove(id: string) {
+    this.taskRepository.update({userId:id}, {userId:null});
     return this.userRepository.delete({id});
   }
 }
