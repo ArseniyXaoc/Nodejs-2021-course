@@ -1,9 +1,12 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, UseFilters } from '@nestjs/common';
+
+import { HttpExceptionFilter } from "../http-exception.filter";
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Controller('boards/:boardId/tasks')
+@UseFilters(new HttpExceptionFilter())
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 

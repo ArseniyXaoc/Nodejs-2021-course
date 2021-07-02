@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, UseFilters } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
+import { HttpExceptionFilter } from "../http-exception.filter";
 
 @Controller('boards')
+@UseFilters(new HttpExceptionFilter())
 export class BoardController {
   constructor(private readonly boardService: BoardService) {}
 
