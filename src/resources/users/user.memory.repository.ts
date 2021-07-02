@@ -31,7 +31,7 @@ const addUser = async (user: ISecretUser): Promise<IUser> => {
  * @param {string} id User Id
  * @returns {Promise} User found in USERS db by id
  */
-const getById = async (id: string): Promise<ISecretUser | undefined>  => {
+const getById = async (id: string | undefined): Promise<ISecretUser | undefined>  => {
   const userRepository = getRepository(User);
   const user = await userRepository.findOne(id);
   return user;
@@ -47,7 +47,7 @@ const getById = async (id: string): Promise<ISecretUser | undefined>  => {
  * @param {string} data.password User password
  * @returns {Promise} found User data object by id
  */
-const update = async (id: string, data: ISecretUser): Promise<UpdateResult> => {
+const update = async (id: string | undefined, data: ISecretUser): Promise<UpdateResult> => {
   const user = getRepository(User).update({id}, data);
   return user;
 };
@@ -70,7 +70,7 @@ const update = async (id: string, data: ISecretUser): Promise<UpdateResult> => {
  * @param {string} id User id
  * @returns {boolean|undefined} Founded & deleted User in USERS db or undefined if it does not found
  */
-const deleteId = async (id: string): Promise<DeleteResult> => getRepository(User).delete({id})
+const deleteId = async (id: string | undefined): Promise<DeleteResult> => getRepository(User).delete({id})
   // const index = USERS.findIndex(item => item.id === id);
   // uponUserTasks(id);
   // if (index !== -1) {

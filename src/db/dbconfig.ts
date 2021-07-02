@@ -13,7 +13,7 @@ const {
   DB_CONNECTION,
   DB_TYPE,
 } = ENV;
-// const  POSTGRES_HOST = '192.168.99.101'
+
 const typeOrmConfig: TypeOrmModule = {
   name: DB_CONNECTION,
   type: DB_TYPE,

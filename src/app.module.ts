@@ -4,9 +4,9 @@ import { Connection } from 'typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
 import { TaskModule } from './task/task.module';
 import { BoardModule } from './board/board.module';
+import { UsersModule } from './users/users.module';
 
 import typeOrmConfig from './db/dbconfig';
 
@@ -14,11 +14,11 @@ import typeOrmConfig from './db/dbconfig';
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
 
-    UserModule,
-
     TaskModule,
 
     BoardModule,
+
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
