@@ -1,13 +1,26 @@
-import { Injectable } from '@nestjs/common';
-import { UsersService } from "../users/users.service";
+import jwt from 'jsonwebtoken';
+import bcript from 'bcrypt';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { UsersService } from '../users/users.service';
 import { UserLoginDto } from './dto/userlogin-auth.dto';
+import ENV from '../common/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UsersService){}
+  constructor(private userService: UsersService) {}
 
-  validate(userLogin: UserLoginDto) {
-    return this.userService.findLogin(userLogin);
+  async validate(userLogin: UserLoginDto) {
+    const { login, password }: UserLoginDto = userLogin;
+    const employe : Promise<UserLoginDto | undefined> = this.userService.findLogin({login});
+    return employe.then((async data => {
+      if(data){
+        const checkHash = await bcript.compare(password, data.password).then((result: boolean) => result);
+        return checkHash;
+      } return false;
+    }));
   }
-
 }

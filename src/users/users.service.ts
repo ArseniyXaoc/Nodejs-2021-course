@@ -30,8 +30,8 @@ export class UsersService {
     return this.userRepository.findOne(id, { select: ['id', 'name', 'login'] });
   }
 
-  findLogin({ login, password }: { login: string; password: string }) {
-    return this.userRepository.findOne({ where: { login, password } });
+  findLogin({ login }: { login: string }) {
+    return this.userRepository.findOne({ where: { login } });
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {

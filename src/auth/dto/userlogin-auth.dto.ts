@@ -1,5 +1,7 @@
 export class UserLoginDto {
-    user: string;
+    id: string;
+
+    name: string;
     
     login: string;
 
