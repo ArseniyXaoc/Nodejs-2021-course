@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { LoggerMidleware } from './utils/logger/logger.middleware';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -27,6 +28,12 @@ import typeOrmConfig from './db/dbconfig';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
+export class AppModule implements NestModule {
   constructor(private connection: Connection) {}
+
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+    .apply(LoggerMidleware)
+    .forRoutes({path: '*', method: RequestMethod.ALL});
+  }
 }

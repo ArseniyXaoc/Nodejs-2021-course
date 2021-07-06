@@ -10,19 +10,6 @@ export class MyLogger extends Logger {
     super.log(`LOG: ${message}`);
   }
 
-  customLogger(req: Request): void {
-    const { method, url, query, body } = req;
-    const start = Date.now();
-    const date =new Date();
-    const min = date.getMinutes();
-    const sec = date.getSeconds();
-    const ms = date.getMilliseconds();
-    this.winstonLogging().log(
-      'info',
-      ` ${method} ${url} ${JSON.stringify(query)} ${JSON.stringify(body)} ${min}:${sec}:${ms}`,
-    );
-  }
-
   error(message: string, trace: string) {
     super.error(`LOG: ${message}`, trace);
   }

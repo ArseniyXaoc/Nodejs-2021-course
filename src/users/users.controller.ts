@@ -35,8 +35,7 @@ export class UsersController {
   }
 
   @Get()
-  findAll(@Req() reqest: Request) {
-    this.logger.customLogger(reqest);
+  findAll() {
     return this.usersService.findAll();
   }
 
