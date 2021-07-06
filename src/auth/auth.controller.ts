@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/userlogin-auth.dto';
 import ENV from '../common/config';
 
-@Controller('auth')
+@Controller('login')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -19,10 +19,10 @@ export class AuthController {
     
   }
 
-  createToken(user: UserLoginDto){
+  private createToken(user: UserLoginDto){
     const secretKey: jwt.Secret = ENV.AUTH_KEY || '';
     const payload = { userId: user.id, login: user.login };
     const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
-    return token;
+    return {token};
   }
 }

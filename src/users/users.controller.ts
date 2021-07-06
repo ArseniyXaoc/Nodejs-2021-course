@@ -9,13 +9,16 @@ import {
   UseFilters,
   HttpStatus,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from "../auth/auth.guard";
 import { HttpExceptionFilter } from '../http-exception.filter';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
+@UseGuards(AuthGuard)
 @UseFilters(new HttpExceptionFilter())
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
