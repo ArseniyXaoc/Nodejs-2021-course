@@ -10,7 +10,11 @@ import {
   HttpStatus,
   NotFoundException,
   UseGuards,
+  Req,
+  Res,
 } from '@nestjs/common';
+import { Request, Response } from 'express';
+import { MyLogger } from "../utils/logger/logger.service";
 import { AuthGuard } from "../auth/auth.guard";
 import { HttpExceptionFilter } from '../http-exception.filter';
 import { UsersService } from './users.service';
@@ -21,6 +25,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @UseGuards(AuthGuard)
 @UseFilters(new HttpExceptionFilter())
 export class UsersController {
+  private readonly logger = new MyLogger();
+
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
@@ -29,7 +35,8 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Req() reqest: Request) {
+    this.logger.customLogger(reqest);
     return this.usersService.findAll();
   }
 
