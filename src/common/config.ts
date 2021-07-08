@@ -18,7 +18,8 @@ const {
   POSTGRES_DB,
   POSTGRES_HOST = '192.168.99.101',
   DB_CONNECTION,
-  DB_TYPE
+  DB_TYPE,
+  USE_FASTIFY,
 } = process.env;
 
 export default {
@@ -34,5 +35,6 @@ export default {
   POSTGRES_DB,
   POSTGRES_HOST,
   DB_CONNECTION,
-  DB_TYPE
+  DB_TYPE,
+  USE_FASTIFY
 };

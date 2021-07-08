@@ -29,7 +29,7 @@ import typeOrmConfig from './db/dbconfig';
   providers: [AppService],
 })
 export class AppModule implements NestModule {
-  constructor(private connection: Connection) {}
+  constructor(private connection: Connection, private readonly appService: AppService) {}
 
   configure(consumer: MiddlewareConsumer) {
     consumer
@@ -37,3 +37,5 @@ export class AppModule implements NestModule {
     .forRoutes({path: '*', method: RequestMethod.ALL});
   }
 }
+
+
