@@ -22,7 +22,6 @@ export class AuthGuard implements CanActivate {
       jwt.verify(token, secret, (_err, decoded) => {
         if (decoded) {
           tokenCheck = true;
-          console.log(tokenCheck);
         } else tokenCheck = false;
       });
     } else {

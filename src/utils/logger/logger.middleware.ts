@@ -1,5 +1,5 @@
 import { finished } from 'stream';
-import {Injectable, NestMiddleware} from '@nestjs/common';
+import {Injectable, NestMiddleware, Next, Req, Res} from '@nestjs/common';
 import {Request, Response, NextFunction} from 'express';
 import { MyLogger } from './logger.service';
 
@@ -7,8 +7,8 @@ import { MyLogger } from './logger.service';
     export class LoggerMidleware implements NestMiddleware {
         private readonly logger = new MyLogger();
 
-        use(req: Request, res: Response, next: NextFunction) {
-            const { method, url, query, body } = req;
+        use(@Req() req: Request, @Res() res: Response, @Next() next: NextFunction) {
+            const { method, url, query, body, params } = req;
             const start = Date.now();
             const date =new Date();
             const min = date.getMinutes();
@@ -17,7 +17,7 @@ import { MyLogger } from './logger.service';
             finished(res, () => {
               const ms = Date.now() - start;
               const { statusCode } = res;
-              this.logger.log(`${method} ${url} ${statusCode} ${JSON.stringify(query)} ${JSON.stringify(body)} ${min} ${sec} [${ms}ms]`)
+              this.logger.log(`${method} ${url} ${statusCode} ${min} ${sec} [${ms}ms]`)
             });
 
         }
