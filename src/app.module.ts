@@ -1,6 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { ConfigModule } from '@nestjs/config';
 import { LoggerMidleware } from './utils/logger/logger.middleware';
 
 import { AppController } from './app.controller';
@@ -9,12 +10,16 @@ import { TaskModule } from './task/task.module';
 import { BoardModule } from './board/board.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-
 import typeOrmConfig from './db/dbconfig';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+
+    TypeOrmModule.forRoot(typeOrmConfig()),
 
     TaskModule,
 

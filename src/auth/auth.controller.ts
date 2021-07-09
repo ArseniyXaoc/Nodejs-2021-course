@@ -1,12 +1,12 @@
+import { ConfigService } from '@nestjs/config';
 import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
 import jwt from 'jsonwebtoken';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/userlogin-auth.dto';
-import ENV from '../common/config';
 
 @Controller('login')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService, private readonly configService: ConfigService) {}
 
   @Post()
  async findOne(@Body() userLoginDto: UserLoginDto ) {
@@ -20,7 +20,7 @@ export class AuthController {
   }
 
   private createToken(user: UserLoginDto){
-    const secretKey: jwt.Secret = ENV.AUTH_KEY || '';
+    const secretKey: jwt.Secret = this.configService.get('AUTH_KEY') || '';
     const payload = { userId: user.id, login: user.login };
     const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
     return {token};

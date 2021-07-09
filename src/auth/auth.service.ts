@@ -7,7 +7,6 @@ import {
 } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { UserLoginDto } from './dto/userlogin-auth.dto';
-import ENV from '../common/config';
 
 @Injectable()
 export class AuthService {

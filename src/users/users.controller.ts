@@ -16,7 +16,7 @@ import {
 } from '@nestjs/common';
 import { MyLogger } from "../utils/logger/logger.service";
 import { AuthGuard } from "../auth/auth.guard";
-import { HttpExceptionFilter } from '../http-exception.filter';
+import { HttpExceptionFilter } from '../utils/filter/http-exception.filter';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';

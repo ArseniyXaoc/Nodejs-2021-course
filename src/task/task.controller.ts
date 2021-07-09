@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, NotFoundException, UseFilters, UseGuards } from '@nestjs/common';
 import { AuthGuard } from "../auth/auth.guard";
 
-import { HttpExceptionFilter } from "../http-exception.filter";
+import { HttpExceptionFilter } from "../utils/filter/http-exception.filter";
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';

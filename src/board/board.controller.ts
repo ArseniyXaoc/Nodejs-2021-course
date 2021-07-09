@@ -3,7 +3,7 @@ import { AuthGuard } from "../auth/auth.guard";
 import { BoardService } from './board.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
-import { HttpExceptionFilter } from "../http-exception.filter";
+import { HttpExceptionFilter } from "../utils/filter/http-exception.filter";
 
 @Controller('boards')
 @UseGuards(AuthGuard)
