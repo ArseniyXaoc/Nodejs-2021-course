@@ -10,7 +10,8 @@ export class AuthController {
 
   @Post()
  async findOne(@Body() userLoginDto: UserLoginDto ) {
-    const hash = await this.authService.validate(userLoginDto);
+    const hash = await this.authService.validate(userLoginDto.login, userLoginDto.password);
+    console.log(hash);
     if(hash){
      const token = this.createToken(userLoginDto);
      return token;

@@ -13,10 +13,10 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 const {USE_FASTIFY} = process.env;
 async function bootstrap() {
   const app = USE_FASTIFY === "true"? await NestFactory.create<NestFastifyApplication>(AppModule,new FastifyAdapter({logger: true})): await NestFactory.create(AppModule);
-  const PORT = app.get(ConfigService).get('PORT');
-  // SwaggerModule.setup('doc', app,swaggerDocument);
+  const PORT = app.get(ConfigService).get('PORT');  
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalInterceptors(new LoggerInterceptor())
+  if(USE_FASTIFY !== 'true') SwaggerModule.setup('doc', app,swaggerDocument);  
+  app.useGlobalInterceptors(new LoggerInterceptor());
   await app.listen(PORT);
 }
 bootstrap();

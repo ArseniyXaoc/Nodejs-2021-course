@@ -1,0 +1,32 @@
+config:
+  target: "http://localhost:3000/"
+  phases:
+    - duration: 2
+      arrivalRate: 1
+      rampTo: 1
+
+
+# scenarios:
+#   - flow:
+#     - get:
+#         url: "/users"
+#         headers:
+#           authorization: "Bearer {{ token }}"
+scenarios:
+  - name: "Search and buy"
+    flow:
+      - log: "Get auth token"
+      - post:
+           url: "http://localhost:3000/login"
+           json:
+             login: "admin"
+             password: "admin"
+           capture:
+             - json: $.token
+               as: token
+      - log: "Abstract: {{ token }}"
+      - get:
+          url: "/users"
+          headers:
+            authorization: "Bearer {{ token }}"
+      - log: "Abstract: {{ token }}"

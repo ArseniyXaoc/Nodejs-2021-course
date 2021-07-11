@@ -10,7 +10,12 @@ import { TaskModule } from './task/task.module';
 import { BoardModule } from './board/board.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import typeOrmConfig from './db/dbconfig';
+import connectionOptions from './ormconfig';
+
+import { Task } from './task/entities/task.entity';
+import { Board } from "./board/entities/board.entity";
+import { User } from './entity';
+import { db1624266293839 } from './migration/1624266293839-db';
 
 @Module({
   imports: [
@@ -19,7 +24,26 @@ import typeOrmConfig from './db/dbconfig';
       envFilePath: '.env',
     }),
 
-    TypeOrmModule.forRoot(typeOrmConfig()),
+    TypeOrmModule.forRoot({
+      name: process.env['DB_CONNECTION'],
+      type: 'postgres',
+      host: 'postgres',
+      port: 5432,
+      username: 'user',
+      password: '123',
+      database: 'userdb',
+      synchronize: false,
+      logging: false,
+      entities: [User, Board, Task],
+      migrationsRun: true,
+      migrations: [db1624266293839],
+      cli: {
+        entitiesDir: './entity',
+        migrationsDir: './migration',
+        subscribersDir: 'build/subscriber',
+      },
+      autoLoadEntities: true,
+    }),
 
     TaskModule,
 

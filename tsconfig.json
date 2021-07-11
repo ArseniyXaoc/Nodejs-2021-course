@@ -28,6 +28,6 @@
     "include": [
       "./src/**/*.ts",
       "./custom.d.ts"
-    ]
+, "src/ormconfig.ts"    ]
   }
   
