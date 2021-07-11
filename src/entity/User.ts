@@ -26,7 +26,7 @@ export class User {
     @Column()
     password: string;
 
-    static toResponse(user: ISecretUser): IUser   {
+    static toResponse(user: User): IUser   {
         const { id, name, login } = user;
         return { id, name, login };
       }
