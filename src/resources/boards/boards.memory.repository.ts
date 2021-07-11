@@ -5,7 +5,7 @@ import { Board, Task } from '../../entity'
  * Get all Boars by id from BOARD db
  * @returns {Promise} All Board from BOARD db
  */
-const getAll = async () => getRepository(Board).find();
+const getAll = async (): Promise<Board[]> => getRepository(Board).find();
 
 /**
  * Create new Board to BOARD db

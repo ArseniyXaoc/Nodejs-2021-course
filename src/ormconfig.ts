@@ -1,6 +1,7 @@
 import { ConnectionOptions } from "typeorm"
 
- const { POSTGRES_HOST } = process.env;
+  const { POSTGRES_HOST } = process.env;
+ // const  POSTGRES_HOST  = 'localhost';
 
  const x: ConnectionOptions = {
    name: "default",

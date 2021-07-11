@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import bcript from 'bcrypt';
 import { getRepository, getConnection } from 'typeorm';
 import { User, Task } from '../../entity';
 import usersService from './user.service';
@@ -15,8 +16,10 @@ router.route('/').get(async (_req, res, next) => {
 
 router.route('/').post(async (req, res, next) => {
   try {
-    // const savedUser = await getRepository(User).save(req.body);
-    const employers = req.body;
+    const {password} = req.body;
+    const salt = await bcript.genSalt(10);
+    const passwordHash = await bcript.hash(password, salt);
+    const employers = {...req.body, password: passwordHash};
     const user = await usersService.create(employers);
     res.status(201).json(user);
   } catch (error) {

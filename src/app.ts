@@ -7,6 +7,8 @@ import boardsRouter from './resources/boards/boards.router';
 import tasksRouter from './resources/task/tasks.router';
 import { logger, errorHandler, uncaughtHandler } from './utils';
 import 'reflect-metadata';
+import loginRouter from './resources/autorisation/login';
+import { validateSassion } from './resources/autorisation/verification';
 
 const app = express();
 
@@ -22,6 +24,8 @@ const app = express();
     }
     next();
   });
+  app.use('/login', loginRouter);
+  app.use(validateSassion);
   app.get('/test', async (_req, _res, next) =>
     next(new Error('Unhandled Error'))
   );

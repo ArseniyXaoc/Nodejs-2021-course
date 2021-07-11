@@ -67,14 +67,14 @@ process.on('unhandledRejection', (reason: Error, promise: Promise<Error>): void 
 });
 }
 
-const logMsgErr = (msg: string) => {
+const logMsgErr = (msg: string): void => {
   Log.log({
     level: 'error',
     message: `${msg}`,
   });
 }
 
-const logMsgInfo = (msg: string) => {
+const logMsgInfo = (msg: string): void => {
   Log.log({
     level: 'info',
     message: `${msg}`,

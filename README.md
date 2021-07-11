@@ -23,3 +23,15 @@ For run this app in work dirrectory run
 docker-compose build
 docker-compose up
 ```
+## Внимание!
+Для проверки тестов запускаем:
+```
+docker compose build
+docker compose up;
+```
+Оставляем запущенной только БД
+
+Запускаем тесты
+```
+npm run test:auth
+```
