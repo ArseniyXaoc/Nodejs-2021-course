@@ -1,5 +1,41 @@
 # RS School REST service
 
+## Tests 
+Fastify
+Report @ 23:35:44(+0300) 2021-07-11
+Elapsed time: 2 seconds
+  Scenarios launched:  1
+  Scenarios completed: 1
+  Requests completed:  5
+  Mean response/sec: 3.33
+  Response time (msec):
+    min: 5
+    max: 74
+    median: 9
+    p95: 74
+    p99: 74
+  Codes:
+    200: 3
+    201: 2
+
+All virtual users finished
+Summary report @ 23:35:44(+0300) 2021-07-11
+  Scenarios launched:  1
+  Scenarios completed: 1
+  Requests completed:  5
+  Mean response/sec: 3.31
+  Response time (msec):
+    min: 5
+    max: 74
+    median: 9
+    p95: 74
+    p99: 74
+  Scenario counts:
+    Search and buy: 1 (100%)
+  Codes:
+    200: 3
+    201: 2
+
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
